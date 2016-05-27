@@ -14,3 +14,4 @@
 
 .DS_Store
 Gemfile.lock
+echo "database.yml" >> .gitignore
