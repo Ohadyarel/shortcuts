@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'tzinfo-data'
 # paperclip for image uploads
 gem "paperclip"
 
