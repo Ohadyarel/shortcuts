@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
 	
 	has_many :favorites
 	has_many :hacks
+
+  def admin?
+		self.admin
+	end
 end
