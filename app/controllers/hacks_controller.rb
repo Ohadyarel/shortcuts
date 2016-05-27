@@ -1,5 +1,6 @@
 class HacksController < ApplicationController
 	def index
+		@hacks=Hack.all
 	end
 
 	def show
