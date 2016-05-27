@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
   root 'home#index'
+
+  resources :users, except: [:index]
+  resources :hacks
+  resources :tags, only: [:create]
+  resources :hacktags, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
+  resources :sessions, only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
