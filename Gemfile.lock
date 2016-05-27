@@ -37,7 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-    bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -79,7 +79,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.9.0)
     multi_json (1.12.1)
-    nokogiri (1.6.7.2)
+    nokogiri (1.6.7.2-x86-mingw32)
       mini_portile2 (~> 2.0.0.rc2)
     paperclip (4.3.6)
       activemodel (>= 3.2.0)
@@ -87,7 +87,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pg (0.18.4)
+    pg (0.18.4-x86-mingw32)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -143,6 +143,8 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2016.4)
+      tzinfo (>= 1.0.0)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     web-console (2.3.0)
@@ -152,7 +154,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
 
 PLATFORMS
-  ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
@@ -167,8 +169,9 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   turbolinks
+  tzinfo-data
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.4
+   1.11.2
