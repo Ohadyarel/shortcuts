@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	has_many :favorites
 	has_many :hacks
 
+	# checks if a user is an admin
   def admin?
 		self.admin
 	end

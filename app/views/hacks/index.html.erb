@@ -4,6 +4,12 @@
 		<h3><%=hack.title%></h3>
 		<%= image_tag hack.lhimg.url(:medium) %>
 		<p><%=hack.body%></p>
+		<% @favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
+		<% if !@favorite %>
+			<%= link_to "Favorite", favorites_path(hack_id: hack.id), method: :post %>
+		<% else %>
+			<%= link_to "Unfavorite", favorite_path(id: @favorite.id), method: :delete %>
+		<% end %>
 		<!-- TO ADD: if the current user created post, allow them to edit or delete -->
 <% end %>
 
