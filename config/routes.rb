@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'hacks#index'
 
   resources :users, except: [:index]
   resources :hacks
