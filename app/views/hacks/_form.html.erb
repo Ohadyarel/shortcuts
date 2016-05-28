@@ -1,0 +1,10 @@
+<!-- form to create / edit a hack -->
+<%= form_for @hack do |f| %>
+	<%=f.label :title %><br>
+	<%=f.text_field :title %><br><br>
+	<%=f.label 'Image' %><br>
+	<%= f.file_field :lhimg %><br><br>
+	<%=f.label :body %><br>
+	<%=f.text_field :body %><br><br>
+	<%=f.submit %>
+<% end %>
