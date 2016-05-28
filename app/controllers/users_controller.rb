@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		@user.save
-		session[:user_id] = @user.id
+		log_in(@user)
 		redirect_to root_path
 	end
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 	def destroy
 		@user = current_user
 		@user.destroy
-		session.clear
+		log_out
 		redirect_to root_path
 	end
 
