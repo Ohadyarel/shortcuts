@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: shortcuts_development
-  # username: kpeng # replace this with your own user name
-  # password: 1234 # replace this with your own password
+  # username: ohadyarel # replace this with your own user name
+  # password:  # replace this with your own password
   host: localhost
   timeout: 5000
 
