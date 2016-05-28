@@ -9,9 +9,14 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		@user.save
-		log_in(@user)
-		redirect_to root_path
+		if @user.save
+			flash[:notice] = "Welcome to shortcuts"
+			log_in(@user)
+			redirect_to root_path
+		else
+			flash[:alert] = "Something went wrong"
+			render :new
+		end
 	end
 
 	def edit
