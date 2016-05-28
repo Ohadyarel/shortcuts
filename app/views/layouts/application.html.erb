@@ -22,9 +22,20 @@
 	<%= flash[:notice] if flash[:notice]%>
 
 	<ul class="nav nav-tabs">
-	  <li><%=link_to "Home", hacks_path%></li>
-	  <li><%=link_to "Profile", user_path(current_user.id)%></li>
-	  <li><a href="#">Logout</a></li>
+		<%if current_user%>
+		  <li><%=link_to "Home", hacks_path%></li>
+		  <li><%=link_to "Profile", user_path(current_user.id)%></li>
+		  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
+		<%else%>
+			<!-- login form -->
+			<%=form_tag sessions_path do%>
+				<%=label_tag :username %>
+				<%=text_field_tag :username, nil, :placeholder=>"Username" %><br>
+				<%=label_tag :password %>
+				<%=password_field_tag :password, nil, :placeholder=> "Password" %><br>
+				<%=submit_tag "Log in" %><br>
+			<%end%>
+		 <%end%>
 	</ul>
 
 <%= yield %>
