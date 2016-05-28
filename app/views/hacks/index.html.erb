@@ -1,7 +1,6 @@
 <%if current_user%>
 	<!-- path to clear session needs to be edited -->
-	<%=link_to "Log Out", session_path(current_user.id)%>
-	
+	<%=link_to "Log Out", session_path(current_user.id), method: "delete"%>
 	<!-- Listing of all the lifehacks in the database -->
 	<h1>Index</h1>
 	<% @hacks.each do |hack| %>
