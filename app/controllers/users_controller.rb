@@ -25,8 +25,14 @@ class UsersController < ApplicationController
 
 	def update
 		@user = current_user
-		@user.update(user_params)
-		redirect_to user_path(@user)
+		if params[:user][:password] != params[:user][:password_confirmation]
+      flash[:alert] = "Sorry! The passwords did not match"
+      redirect_to(:back)
+    else
+			@user.update(user_params)
+			flash[:notice] = "User updated"
+			redirect_to user_path(@user)
+		end
 	end
 
 	def destroy

@@ -1,5 +1,6 @@
 <!-- User profile page with a list of hacks created and favorited -->
 <h1><%=current_user.username%></h1>
+<%= button_to("Update Profile", edit_user_path(current_user.id),method: :get)%>
 
 <h3><span style="color:red;">Add user favorites</span></h3>
 <h3><span style="color:red;">Add user lifehack posts</span></h3>
