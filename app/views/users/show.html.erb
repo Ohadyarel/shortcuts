@@ -5,3 +5,9 @@
 <h3><span style="color:red;">Add user favorites</span></h3>
 <h3><span style="color:red;">Add user lifehack posts</span></h3>
 <h3><span style="color:red;">----> Allow users to edit the posts too</span></h3>
+
+<% @hacks.each do |hack| %>
+	<h3><%=hack.title%></h3>
+	<%= image_tag hack.lhimg.url(:medium) %>
+	<p><%=hack.body%></p>
+<%end%>
