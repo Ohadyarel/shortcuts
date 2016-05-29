@@ -27,6 +27,14 @@
 		  <li><%=link_to "Profile", user_path(current_user.id)%></li>
 		  <li><%=link_to "Add LH", new_hack_path%></li>
 		  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
+		  <div class="col-lg-6">
+		    <div class="input-group">
+		      <input type="text" class="form-control" placeholder="Search for...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Go!</button>
+		      </span>
+		    </div>
+		  </div>
 		<%else%>
 			<!-- login form -->
 			<%=form_tag sessions_path do%>
