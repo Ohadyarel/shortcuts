@@ -12,6 +12,7 @@ class HacksController < ApplicationController
 	# initializing a new lifehack
 	def new
 		@hack=Hack.new
+		@tag=Tag.new
 	end
 
 	# creating a new lifehack by the user
