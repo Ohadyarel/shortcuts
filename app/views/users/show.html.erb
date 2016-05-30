@@ -10,4 +10,5 @@
 	<h3><%=hack.title%></h3>
 	<%= image_tag hack.lhimg.url(:medium) %>
 	<p><%=hack.body%></p>
+	<%= link_to "Edit", edit_hack_path(hack.id) %>
 <%end%>
