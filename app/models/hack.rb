@@ -3,6 +3,7 @@ class Hack < ActiveRecord::Base
 	has_many :favorites
 	has_many :hack_tags
 	has_many :tags, through: :hack_tags
+	acts_as_votable
 
 	# validates image attachment
 	has_attached_file :lhimg, :styles =>
