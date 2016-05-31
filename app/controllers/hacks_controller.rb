@@ -49,6 +49,18 @@ class HacksController < ApplicationController
 		redirect_to hacks_path
 	end
 
+	def upvote
+		@hack = Hack.find(params[:id])
+		@hack.upvote_by current_user
+		redirect_to :back
+	end
+
+	def downvote
+		@hack = Hack.find(params[:id])
+		@hack.downvote_by current_user
+		redirect_to :back
+	end
+
 	# strong parameters
 	private
 	def hack_params

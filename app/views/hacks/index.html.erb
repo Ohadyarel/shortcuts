@@ -23,6 +23,14 @@
 			<% end %>
 		<%end%>
 
+		<%= link_to like_hack_path(hack), method: :put do %>
+			Upvote
+			<%= hack.get_upvotes.size %>
+		<% end %>
+		<%= link_to dislike_hack_path(hack), method: :put do %>
+			Downvote
+			<%= hack.get_downvotes.size %>
+		<% end %>
 	<% end %>
 <% end %>
 
