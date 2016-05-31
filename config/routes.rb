@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   root 'hacks#index'
 
   resources :users, except: [:index]
-  resources :hacks
-  # resources :tags, only: [:create]
+  resources :hacks do
+    member do
+      put "like", to: "hacks#upvote"
+      put "dislike", to: "hacks#downvote"
+    end
+  end
+  resources :tags, only: [:create]
   resources :hack_tags, only: [:destroy]
   resources :favorites, only: [:create, :destroy]
   resources :sessions, only: [:create, :destroy]
