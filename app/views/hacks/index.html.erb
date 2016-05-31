@@ -8,18 +8,15 @@
 		<!-- 	if there is a user in session show the favorite/unfavorite and edit -->
 		<% @favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
 
-		<%if hack.user_id==current_user.id%>
-			match
 			<!-- link to edit hack only if created by current_user or if current_user is admin -->
-			<% if current_user.admin? or current_user == hack.user %>
+		<% if current_user.admin? or current_user == hack.user %>
 				<%= link_to "Edit", edit_hack_path(hack.id) %>
-			<% end %>
-		<%else%>
-			no match
-			<% if !@favorite %>
-				<%= link_to "Favorite", favorites_path(hack_id: hack.id), method: :post %>
-			<% else %>
-				<%= link_to "Unfavorite", favorite_path(@favorite.id), method: :delete %>
+			<% if current_user != hack.user %>
+				<% if !@favorite %>
+					<%= link_to "Favorite", favorites_path(hack_id: hack.id), method: :post %>
+				<% else %>
+					<%= link_to "Unfavorite", favorite_path(@favorite.id), method: :delete %>
+				<% end %>
 			<% end %>
 		<%end%>
 
