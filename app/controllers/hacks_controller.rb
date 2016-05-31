@@ -31,6 +31,7 @@ class HacksController < ApplicationController
 	# find the lifehack post that the user would like to edit
 	def edit
 		@hack=Hack.find(params[:id])
+		@tag=Tag.new
 	end
 
 	# update the lifehack post
