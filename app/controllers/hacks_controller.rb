@@ -1,7 +1,16 @@
 class HacksController < ApplicationController
 	# for the listing of all lifehacks
 	def index
-		@hacks=Hack.all
+		if params[:search]
+			@tag = Tag.where(category:params[:search]).first
+			if @tag
+				@hacks=@tag.hacks
+			else
+				@hacks=Hack.all	
+			end
+		else
+			@hacks=Hack.all
+		end
 	end
 
 	# find the hack for hack page
