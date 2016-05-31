@@ -15,8 +15,10 @@
 //= require turbolinks
 //= require_tree .
 
-$("form").on("keypress", function (e) {
-    if (e.keyCode == 13) {
-        return false;
-    }
+// this works vvvvv
+$(document).on('keyup keypress', 'form input[type="text"]', function(e) {
+  if(e.which == 13) {
+    e.preventDefault();
+    return false;
+  }
 });
