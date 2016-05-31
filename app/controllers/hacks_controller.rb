@@ -1,6 +1,7 @@
 class HacksController < ApplicationController
 	# for the listing of all lifehacks
 	def index
+		# search lifehacks with a certain tag
 		if params[:search]
 			@tag = Tag.where(category:params[:search]).first
 			if @tag
@@ -82,9 +83,7 @@ class HacksController < ApplicationController
 
 	# destroy a lifehack :(
 	def destroy
-		puts "IM IN THE HACK CONTROLLER"
 		@hack = Hack.find(params[:id])
-		puts @hack.id
 		@hack.destroy
 		redirect_to hacks_path
 	end
