@@ -12,4 +12,6 @@ $(document).ready(function(){
 		$("#tag-array").val(tagArray)
 		// console.log(tagArray);
 	});
+
+	
 })

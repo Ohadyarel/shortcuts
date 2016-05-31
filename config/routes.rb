@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
   resources :hacks
   resources :tags, only: [:create]
-  resources :hacktags, only: [:create, :destroy]
+  resources :hack_tags, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   resources :sessions, only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.

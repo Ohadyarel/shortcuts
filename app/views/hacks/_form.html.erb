@@ -13,6 +13,12 @@
 	<div type="submit" id="submit-tag">submit</div>
 	<%= f.hidden_field :tags, id:"tag-array"%>
 	<br>
-	<div id="tags"></div>
+	<div id="tags">
+		<%if @tags%>
+			<%@tags.each do |tag|%>
+				<p id="cloud"><%=tag.category%><%=link_to "X", hack_tag_path(tag.id, hack_id:@hack.id), method: :delete%></p>
+			<%end%>
+		<%end%>
+	</div>
 	<%=f.submit %>
 <% end %>
