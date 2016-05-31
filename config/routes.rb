@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tags, only: [:create]
-  resources :hacktags, only: [:create, :destroy]
+  resources :hack_tags, only: [:destroy]
   resources :favorites, only: [:create, :destroy]
   resources :sessions, only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.

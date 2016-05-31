@@ -1,7 +1,17 @@
 class HacksController < ApplicationController
 	# for the listing of all lifehacks
 	def index
-		@hacks=Hack.all
+		# search lifehacks with a certain tag
+		if params[:search]
+			@tag = Tag.where(category:params[:search]).first
+			if @tag
+				@hacks=@tag.hacks
+			else
+				@hacks=Hack.all	
+			end
+		else
+			@hacks=Hack.all
+		end
 	end
 
 	# find the hack for hack page
@@ -24,7 +34,22 @@ class HacksController < ApplicationController
 		else
 			flash[:alert]="Oh no! Your hack was not created"
 		end
-		
+
+		# captures the tags and converts to an array
+		@allTags = params[:hack][:tags]
+		@arrTags = @allTags.split(",").map(&:strip)
+
+		# loop through each tag
+		@arrTags.each do |tag|
+			# if the tag exists, create the hack tag
+			if @tag=Tag.where(category:tag).first
+				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+			else
+				@tag=Tag.create(category: tag)
+				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+			end
+		end
+
 		redirect_to hacks_path
 	end
 
@@ -32,19 +57,33 @@ class HacksController < ApplicationController
 	def edit
 		@hack=Hack.find(params[:id])
 		@tag=Tag.new
+		@tags=@hack.tags
 	end
 
 	# update the lifehack post
 	def update
 		@hack = Hack.find(params[:id])
 		@hack.update(hack_params)
+
+		@allTags = params[:hack][:tags]
+		@arrTags = @allTags.split(",").map(&:strip)
+
+		# loop through each tag
+		@arrTags.each do |tag|
+			# if the tag exists, create the hack tag
+			if @tag=Tag.where(category:tag).first
+				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+			else
+				@tag=Tag.create(category: tag)
+				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+			end
+		end
 		redirect_to hacks_path
 	end
 
 	# destroy a lifehack :(
 	def destroy
 		@hack = Hack.find(params[:id])
-		puts @hack.id
 		@hack.destroy
 		redirect_to hacks_path
 	end

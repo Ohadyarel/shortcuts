@@ -7,12 +7,18 @@
 	<%=f.label :body %><br>
 	<%=f.text_field :body %><br><br>
 	<%= f.hidden_field :user_id, value:current_user.id%>
-	<%=f.submit %>
-<% end %>
 
-<!-- form to add a category tag to a hack -->
-<%= form_for @tag, url: tags_path do |f| %>
-	<%=f.label :category %><br>
-	<%=f.text_field :category %><br><br>
+	<!-- capture the tag -->
+	<input type="text" id="tag" placeholder="input tags"> 
+	<div type="submit" id="submit-tag">submit</div>
+	<%= f.hidden_field :tags, id:"tag-array"%>
+	<br>
+	<div id="tags">
+		<%if @tags%>
+			<%@tags.each do |tag|%>
+				<p id="cloud"><%=tag.category%><%=link_to "X", hack_tag_path(tag.id, hack_id:@hack.id), method: :delete%></p>
+			<%end%>
+		<%end%>
+	</div>
 	<%=f.submit %>
 <% end %>
