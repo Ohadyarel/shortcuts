@@ -11,12 +11,33 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
+//= require jquery-ui/autocomplete
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 
-$("form").on("keypress", function (e) {
-    if (e.keyCode == 13) {
-        return false;
-    }
+
+// Prevents user from hitting 'enter' on the form
+$(document).on('keyup keypress', 'form input[type="text"]', function(e) {
+  if(e.which == 13) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// autocomplete for search bar
+$(document).on('keyup', '#search', function(e) {
+  	$.ajax({
+		  type:"GET",
+		  url:"hacks",
+		  dataType:"json",
+		  // gets the tags from the database
+		  success:function(result){
+		  	// autocomplete
+		  	$( "#search" ).autocomplete({  
+       	source: result
+		    });
+		  }
+		})
 });

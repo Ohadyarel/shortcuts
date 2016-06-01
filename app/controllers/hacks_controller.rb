@@ -1,6 +1,7 @@
 class HacksController < ApplicationController
 	# for the listing of all lifehacks
 	def index
+
 		# search lifehacks with a certain tag
 		if params[:search]
 			@tag = Tag.where(category:params[:search]).first
@@ -12,8 +13,29 @@ class HacksController < ApplicationController
 		else
 			@hacks=Hack.all
 		end
+<<<<<<< HEAD
 		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
 		@hackvote = @popular.last(10)
+=======
+
+		#variables for most popular life hacks based on upvotes
+		@trending = @hacks.sort_by{ |hack| hack.get_upvotes.size }
+		@hackvote = @trending.last(10)
+
+		# for autocomplete
+		@tags=Tag.all
+		@arrTags=[]
+		@tags.each do |cat|
+			@arrTags.push(cat.category)
+		end
+
+	  respond_to do |format|
+	    format.html
+	    format.json {render json: @arrTags}
+	  end
+	  # end autocomplete
+	  
+>>>>>>> 7aca2bb6ffb4e6f3e05b5649c80b16d34415395f
 	end
 
 	# find the hack for hack page
@@ -93,13 +115,17 @@ class HacksController < ApplicationController
 	def upvote
 		@hack = Hack.find(params[:id])
 		@hack.upvote_by current_user
-		redirect_to :back
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def downvote
 		@hack = Hack.find(params[:id])
 		@hack.downvote_by current_user
-		redirect_to :back
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	# strong parameters
