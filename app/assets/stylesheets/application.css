@@ -83,7 +83,7 @@
 	border-color:black;
 	color: red;
 }
-#upload-button{
+/*#upload-button{
 	text-align: center;
 	width:200px;
 	height:35px;
@@ -99,5 +99,11 @@
 #upload-button span{
 	z-index: -100;
 	color: lightgray;
+}*/
+/*end forms*/
+
+.input-group-addon{
+	/*background-color: red;*/
+	border:black solid 2px;
+	border: 2px solid lightgray;
 }
-/*end forms
