@@ -15,9 +15,10 @@
 				<div class="hack_title">
 					<h3><%=hack.title%></h3>
 					<div class="hack_title_buttons">
+						<!-- dropdown for tags -->
 						<div class="dropdown">
 						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						    <span class="glyphicon glyphicon-tag"></span>
+						    <span class="glyphicon glyphicon-tags"></span>
 						  </button>
 						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 						    <% hack.tags.each do |tag| %>
@@ -25,12 +26,14 @@
 						    <% end %>
 						  </ul>
 						</div>
+						<%= link_to edit_hack_path(hack.id) do %>
+							<i class="fa fa-pencil"></i>
+						<% end %>
 					</div>
 				</div>
 				<%= image_tag hack.lhimg.url(:medium) %>
 				<p><%=hack.body%></p>
-				<%= link_to "Edit", edit_hack_path(hack.id) %>
-
+				
 				<!-- up/down vote buttons -->
 				<%= link_to like_hack_path(hack), method: :put, remote: true do %>
 					<i class="glyphicon glyphicon-triangle-top"></i>
