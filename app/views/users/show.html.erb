@@ -12,7 +12,21 @@
 		<!-- tab with all of the hacks created by current user -->
 		<div role="tabpanel" class="tab-pane fade in active" id="hacks">
 			<% @hacks.each do |hack| %>
-				<h3><%=hack.title%></h3>
+				<div class="hack_title">
+					<h3><%=hack.title%></h3>
+					<div class="hack_title_buttons">
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="glyphicon glyphicon-tag"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <% hack.tags.each do |tag| %>
+							    <li><%= tag.category %></li>
+						    <% end %>
+						  </ul>
+						</div>
+					</div>
+				</div>
 				<%= image_tag hack.lhimg.url(:medium) %>
 				<p><%=hack.body%></p>
 				<%= link_to "Edit", edit_hack_path(hack.id) %>
