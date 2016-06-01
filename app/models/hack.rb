@@ -12,4 +12,5 @@ class Hack < ActiveRecord::Base
 	validates_attachment_content_type :lhimg,
 	:content_type => /\Aimage\/.*\Z/
 
+	attr_accessor :favorite
 end
