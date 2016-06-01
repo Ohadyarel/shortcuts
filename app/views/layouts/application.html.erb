@@ -25,16 +25,30 @@
 
 	<ul class="nav nav-tabs">
 		<%if current_user%>
-		  <li><%=link_to "Home", hacks_path%></li>
-		  <li><%=link_to "Profile", user_path(current_user.id)%></li>
-		  <li><%=link_to "Add LH", new_hack_path%></li>
-		  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
+		  
 		  <!-- search bar -->
 		  <%= form_tag(hacks_path, method: :get, id: "search-form") do %>
 				<%= text_field_tag :search, params[:search], placeholder: "Search Tags" %>
 				<%= submit_tag "Search" %>
 			<% end %>
 
+			<!-- <button type="button" class="btn btn-default btn-lg"> -->
+				<%=link_to new_hack_path do %>
+			  	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			  <% end %>
+			<!-- </button> -->
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li><%=link_to "Home", hacks_path%></li>
+				  <li><%=link_to "Profile", user_path(current_user.id)%></li>
+				  
+				  <li><%=link_to "Edit Profile", edit_user_path(current_user.id)%></li>
+				  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
+			  </ul>
+		</div>
 		<%else%>
 			<!-- login form -->
 			<%=form_tag sessions_path do%>
