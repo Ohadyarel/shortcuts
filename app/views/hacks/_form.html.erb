@@ -1,24 +1,25 @@
 <!-- form to create / edit a hack -->
-<%= form_for @hack do |f| %>
-	<%=f.label :title %><br>
-	<%=f.text_field :title %><br><br>
-	<%=f.label 'Image' %><br>
-	<%= f.file_field :lhimg %><br><br>
-	<%=f.label :body %><br>
-	<%=f.text_field :body %><br><br>
-	<%= f.hidden_field :user_id, value:current_user.id%>
+<div id="form-bg"></div>
+<div class="forms-box">
+	<%= form_for @hack do |f| %>
+		<%=f.text_field :title, placeholder: "Title" %><br><br>
+		<%=f.label 'Choose an image' %><br>
+		<%= f.file_field :lhimg, title:"hello world" %>
+		<%=f.text_field :body, placeholder: "Body" %><br><br>
+		<%= f.hidden_field :user_id, value:current_user.id%>
 
-	<!-- capture the tag -->
-	<input type="text" id="tag" placeholder="input tags"> 
-	<div type="submit" id="submit-tag">submit</div>
-	<%= f.hidden_field :tags, id:"tag-array"%>
-	<br>
-	<div id="tags">
-		<%if @tags%>
-			<%@tags.each do |tag|%>
-				<p id="cloud"><%=tag.category%><%=link_to "X", hack_tag_path(tag.id, hack_id:@hack.id), method: :delete%></p>
+		<!-- capture the tag -->
+		<input type="text" id="tag" placeholder="input tags"> 
+		<div type="submit" id="submit-tag"><span class="glyphicon glyphicon-plus" aria-hidden="true"></div>
+		<%= f.hidden_field :tags, id:"tag-array"%>
+		<br>
+		<div id="tags">
+			<%if @tags%>
+				<%@tags.each do |tag|%>
+					<p id="cloud"><%=tag.category%><%=link_to "X", hack_tag_path(tag.id, hack_id:@hack.id), method: :delete%></p>
+				<%end%>
 			<%end%>
-		<%end%>
-	</div>
-	<%=f.submit %>
-<% end %>
+		</div>
+		<%=f.submit %>
+	<% end %>
+</div>
