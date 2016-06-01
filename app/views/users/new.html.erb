@@ -1,15 +1,14 @@
-<%= form_for @user do |f| %>
-	<%=f.label :username %><br>
-	<%=f.text_field :username %><br><br>
+<div id="form-bg"></div>
+<div class="forms-box">
+	<%= form_for @user do |f| %>
+		<%=f.text_field :username, placeholder: "Username" %><br><br>
 
-	<%=f.label :password %><br>
-	<%=f.password_field :password %><br><br>
+		<%=f.password_field :password, placeholder: "Password" %><br><br>
 
-	<%= f.label :password_confirmation %><br>
-	<%=f.password_field :password_confirmation %><br><br>
+		<%=f.password_field :password_confirmation, placeholder: "Re-enter Password" %><br><br>
 
-	<%=f.label :email %><br>
-	<%=f.email_field :email %><br><br>
+		<%=f.email_field :email, placeholder: "Email" %><br><br>
 
-	<%=f.submit %>
-<% end %>
+		<%=f.submit %>
+	<% end %>
+</div>

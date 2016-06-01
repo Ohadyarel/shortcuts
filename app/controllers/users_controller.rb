@@ -11,13 +11,18 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if @user.save
-			flash[:notice] = "Welcome to shortcuts"
-			log_in(@user)
-			redirect_to root_path
-		else
-			flash[:alert] = "Something went wrong"
-			render :new
+		
+		# check that the passwords match
+		if params[:user][:password] != params[:user][:password_confirmation]
+      flash[:alert] = "Sorry! The passwords did not match"
+      redirect_to(:back)
+    else
+    	# save the user and redirect to root
+			if @user.save
+				flash[:notice] = "Welcome to Shortcuts!"
+				log_in(@user)
+				redirect_to root_path
+			end
 		end
 	end
 
