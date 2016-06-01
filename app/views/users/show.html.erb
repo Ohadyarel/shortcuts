@@ -13,11 +13,35 @@
 	<%= link_to "Edit", edit_hack_path(hack.id) %>
 
 	<%= link_to like_hack_path(hack), method: :put do %>
-		Upvote
+		<i class="glyphicon glyphicon-triangle-top"></i>
 		<%= hack.get_upvotes.size %>
 	<% end %>
 	<%= link_to dislike_hack_path(hack), method: :put do %>
-		Downvote
+		<i class="glyphicon glyphicon-triangle-bottom"></i>
 		<%= hack.get_downvotes.size %>
+	<% end %>
+<%end%>
+
+<h1>Favorite hack</h1> <!-- change this into a tab -->
+<% @fav_hacks.each do |fav| %>
+	<h3><%=fav.hack.title%></h3>
+	<%= image_tag fav.hack.lhimg.url(:medium) %>
+	<p><%=fav.hack.body%></p>
+
+	<!-- favorite button -->
+	<div id="fave_buttons_<%= fav.hack.id %>">
+		<%= link_to favorite_path(fav.id), method: :delete, remote: true, class: "unfave_button" do %>
+			<i class="fa fa-star"></i>
+		<% end %>
+	</div>
+
+	<!-- up/down vote buttons -->
+	<%= link_to like_hack_path(fav.hack), method: :put do %>
+		<i class="glyphicon glyphicon-triangle-top"></i>
+		<%= fav.hack.get_upvotes.size %>
+	<% end %>
+	<%= link_to dislike_hack_path(fav.hack), method: :put do %>
+		<i class="glyphicon glyphicon-triangle-bottom"></i>
+		<%= fav.hack.get_downvotes.size %>
 	<% end %>
 <%end%>
