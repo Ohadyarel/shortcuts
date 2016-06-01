@@ -3,8 +3,7 @@
 <div class="forms-box">
 	<%= form_for @hack do |f| %>
 		<%=f.text_field :title, placeholder: "Title" %><br><br>
-		<%=f.label 'Choose an image' %><br>
-		<%= f.file_field :lhimg, title:"hello world" %>
+		<%= f.file_field :lhimg %><br>
 		<%=f.text_field :body, placeholder: "Body" %><br><br>
 		<%= f.hidden_field :user_id, value:current_user.id%>
 
@@ -20,6 +19,6 @@
 				<%end%>
 			<%end%>
 		</div>
-		<%=f.submit %>
+		<%=f.submit id: "create-hack" %>
 	<% end %>
 </div>

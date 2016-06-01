@@ -28,31 +28,36 @@
 
 .forms-box{
 	/*background:gray;*/
-	width:500px;
-	height: 300px;
-	margin: 130px auto;
+	width:400px;
+	/*height: 300px;*/
+	margin: 10% auto;
 }
-.forms-box form{
+/*.forms-box form{
 	display: inline-block;
-	/*text-align: center;*/
-	margin: auto 35%;
-}
-.forms-box input{
 	text-align: center;
-	width:200px;
+	margin: auto 25%;
+}*/
+/*text box*/
+.forms-box input[type=text],input[type=password]{
+	text-align: center;
+	width:400px;
 	height:35px;
 	border: 2px solid lightgray;
 	border-radius: 4px;
 }
-.forms-box input:focus {
+.forms-box input[type=text]:focus, input[type=password]:focus {
 	border-color:black;
 	outline: 5px;
 	outline-color: black;
 }
+/*submit button*/
 .forms-box input[type=submit] {
+	width:100px;
 	background-color:black;
 	border-color:black;
+	border-radius: 4px;
 	color: white;
+	margin: auto 40%;
 }
 .forms-box input[type=submit]:hover {
 	background-color:lightgray;
@@ -66,6 +71,7 @@
 	/*color: transparent;*/
 }
 .button_to input[type=submit]{
+	width:100px;
 	margin-top: 10px;
 	background-color:red;
 	border-color:red;
@@ -77,5 +83,21 @@
 	border-color:black;
 	color: red;
 }
-
-/*end forms*/
+#upload-button{
+	text-align: center;
+	width:200px;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+	background-color:white;
+	border-color:lightgray;
+}
+#upload-button input{
+	opacity: 0;
+	z-index: 100;
+}
+#upload-button span{
+	z-index: -100;
+	color: lightgray;
+}
+/*end forms
