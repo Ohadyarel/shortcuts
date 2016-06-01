@@ -12,14 +12,19 @@
 	<p><%=hack.body%></p>
 	<%= link_to "Edit", edit_hack_path(hack.id) %>
 
-	<%= link_to like_hack_path(hack), method: :put do %>
+		<!-- up/down vote buttons -->
+	<%= link_to like_hack_path(hack), method: :put, remote: true do %>
 		<i class="glyphicon glyphicon-triangle-top"></i>
-		<%= hack.get_upvotes.size %>
 	<% end %>
-	<%= link_to dislike_hack_path(hack), method: :put do %>
+	<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
 		<i class="glyphicon glyphicon-triangle-bottom"></i>
-		<%= hack.get_downvotes.size %>
 	<% end %>
+
+	<!-- up/down vote counters -->
+	<div class="vote_counts">
+		<span id="upvote_count_<%= hack.id %>"><%= hack.get_upvotes.size %></span>
+		<span id="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
+	</div>
 <%end%>
 
 <h1>Favorite hack</h1> <!-- change this into a tab -->
@@ -36,12 +41,16 @@
 	</div>
 
 	<!-- up/down vote buttons -->
-	<%= link_to like_hack_path(fav.hack), method: :put do %>
+	<%= link_to like_hack_path(fav.hack), method: :put, remote: true do %>
 		<i class="glyphicon glyphicon-triangle-top"></i>
-		<%= fav.hack.get_upvotes.size %>
 	<% end %>
-	<%= link_to dislike_hack_path(fav.hack), method: :put do %>
+	<%= link_to dislike_hack_path(fav.hack), method: :put, remote: true do %>
 		<i class="glyphicon glyphicon-triangle-bottom"></i>
-		<%= fav.hack.get_downvotes.size %>
 	<% end %>
+
+	<!-- up/down vote counters -->
+	<div class="vote_counts">
+		<span id="upvote_count_<%= fav.hack.id %>"><%= fav.hack.get_upvotes.size %></span>
+		<span id="downvote_count_<%= fav.hack.id %>"><%= fav.hack.get_downvotes.size %></span>
+	</div>
 <%end%>
