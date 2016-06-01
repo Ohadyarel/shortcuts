@@ -1,6 +1,7 @@
 class HacksController < ApplicationController
 	# for the listing of all lifehacks
 	def index
+
 		# search lifehacks with a certain tag
 		if params[:search]
 			@tag = Tag.where(category:params[:search]).first
@@ -12,6 +13,10 @@ class HacksController < ApplicationController
 		else
 			@hacks=Hack.all
 		end
+
+		#variables for most popular life hacks based on upvotes
+		@trending = @hacks.sort_by{ |hack| hack.get_upvotes.size }
+		@hackvote = @trending.last(10)
 
 		# for autocomplete
 		@tags=Tag.all
@@ -26,8 +31,6 @@ class HacksController < ApplicationController
 	  end
 	  # end autocomplete
 	  
-		@trending = @hacks.sort_by{ |hack| hack.get_upvotes.size }
-		@hackvote = @trending.last(10)
 	end
 
 	# find the hack for hack page
