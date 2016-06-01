@@ -91,13 +91,17 @@ class HacksController < ApplicationController
 	def upvote
 		@hack = Hack.find(params[:id])
 		@hack.upvote_by current_user
-		redirect_to :back
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def downvote
 		@hack = Hack.find(params[:id])
 		@hack.downvote_by current_user
-		redirect_to :back
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	# strong parameters

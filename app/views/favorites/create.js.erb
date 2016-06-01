@@ -1,0 +1,2 @@
+// change the empty favorite star icon to a full star icon
+$('#fave_buttons_<%= @hack.id %>').html('<%= link_to favorite_path(@hack.favorites.last.id), method: :delete, remote: true, id: "unfave_button" do %><i class="fa fa-star"></i><% end %>')
