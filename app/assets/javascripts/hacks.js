@@ -13,5 +13,10 @@ $(document).ready(function(){
 		// console.log(tagArray);
 	});
 
+	// autocomplete tags
+	// $( "#tags" ).autocomplete({
+ //      source: availableTags
+ //    });
+
 	
 })

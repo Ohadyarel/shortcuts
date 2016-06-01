@@ -12,6 +12,19 @@ class HacksController < ApplicationController
 		else
 			@hacks=Hack.all
 		end
+
+		# for autocomplete
+		@tags=Tag.all
+		@arrTags=[]
+		@tags.each do |cat|
+			@arrTags.push(cat.category)
+		end
+
+	  respond_to do |format|
+	    format.html
+	    format.json {render json: @arrTags}
+	  end
+	  # end autocomplete
 	end
 
 	# find the hack for hack page
