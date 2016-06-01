@@ -11,21 +11,20 @@
 			<!-- link to edit hack only if created by current_user or if current_user is admin -->
 		<% if current_user.admin? or current_user == hack.user %>
 				<%= link_to "Edit", edit_hack_path(hack.id) %>
-			<% if current_user != hack.user %>
-				<div id="fave_buttons_<%= hack.id %>">
-					<% if !hack.favorite %>
-						<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
-							<i class="fa fa-star-o"></i>
-						<% end %>
-					<% else %>
-						<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
-							<i class="fa fa-star"></i>
-						<% end %>
+		<% end %>
+		<% if current_user != hack.user %>
+			<div id="fave_buttons_<%= hack.id %>">
+				<% if !hack.favorite %>
+					<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
+						<i class="fa fa-star-o"></i>
 					<% end %>
-				</div>
-			<% end %>
-		<%end%>
-
+				<% else %>
+					<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
+						<i class="fa fa-star"></i>
+					<% end %>
+				<% end %>
+			</div>
+		<% end %>
 		<%= link_to like_hack_path(hack), method: :put do %>
 			<i class="glyphicon glyphicon-triangle-top"></i>
 			<%= hack.get_upvotes.size %>
