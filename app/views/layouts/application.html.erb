@@ -27,6 +27,7 @@
 		<%if current_user%>
 		  <li><%=link_to "Home", hacks_path%></li>
 		  <li><%=link_to "Profile", user_path(current_user.id)%></li>
+		  <li><%=link_to "Edit Profile", edit_user_path(current_user.id)%></li>
 		  <li><%=link_to "Add LH", new_hack_path%></li>
 		  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
 		  <!-- search bar -->
