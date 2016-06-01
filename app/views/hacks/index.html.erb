@@ -1,6 +1,6 @@
 <!-- Listing of all the lifehacks in the database  -->
 <h1>Index</h1>
-<h2>Trending</h2>
+<h2>Most Popular</h2>
 <% @hackvote.reverse.each do |hack| %>
 	<h3><%=hack.title%></h3>
 	<%= image_tag hack.lhimg.url(:medium) %>

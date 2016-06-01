@@ -12,8 +12,8 @@ class HacksController < ApplicationController
 		else
 			@hacks=Hack.all
 		end
-		@trending = @hacks.sort_by{ |hack| hack.get_upvotes.size }
-		@hackvote = @trending.last(10)
+		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
+		@hackvote = @popular.last(10)
 	end
 
 	# find the hack for hack page
