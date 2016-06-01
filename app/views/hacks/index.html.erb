@@ -13,19 +13,23 @@
 				<%= link_to "Edit", edit_hack_path(hack.id) %>
 			<% if current_user != hack.user %>
 				<% if !@favorite %>
-					<%= link_to "Favorite", favorites_path(hack_id: hack.id), method: :post %>
+					<%= link_to favorites_path(hack_id: hack.id), method: :post do %>
+						<i class="fa fa-star-o"></i>
+					<% end %>
 				<% else %>
-					<%= link_to "Unfavorite", favorite_path(@favorite.id), method: :delete %>
+					<%= link_to favorite_path(@favorite.id), method: :delete do %>
+						<i class="fa fa-star"></i>
+					<% end %>
 				<% end %>
 			<% end %>
 		<%end%>
 
 		<%= link_to like_hack_path(hack), method: :put do %>
-			Upvote
+			<i class="glyphicon glyphicon-triangle-top"></i>
 			<%= hack.get_upvotes.size %>
 		<% end %>
 		<%= link_to dislike_hack_path(hack), method: :put do %>
-			Downvote
+			<i class="glyphicon glyphicon-triangle-bottom"></i>
 			<%= hack.get_downvotes.size %>
 		<% end %>
 	<% end %>
