@@ -16,18 +16,34 @@
 		<div role="tabpanel" class="tab-pane fade in active" id="popular">
 			<h2>Most Popular Life Hacks</h2>
 			<% @hackvote.reverse.each do |hack| %>
-				<h3><%=hack.title%></h3>
+				<div class="hack_title">
+					<h3><%=hack.title%></h3>
+					<div class="hack_title_buttons">
+						<!-- dropdown for tags -->
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="glyphicon glyphicon-tags"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <% hack.tags.each do |tag| %>
+							    <li><%= tag.category %></li>
+						    <% end %>
+						  </ul>
+						</div>
+						<!-- link to edit hack only if created by current_user or if current_user is admin -->
+						<% if logged_in? and (current_user.admin? or current_user == hack.user) %>
+							<%= link_to edit_hack_path(hack.id) do %>
+								<i class="fa fa-pencil"></i>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
 				<%= image_tag hack.lhimg.url(:medium) %>
 				<p><%=hack.body%></p>
 				<% if logged_in? %>
 					
 					<!-- checking if the current_user already favorited the current hack -->
 					<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
-						
-						<!-- link to edit hack only if created by current_user or if current_user is admin -->
-					<% if current_user.admin? or current_user == hack.user %>
-							<%= link_to "Edit", edit_hack_path(hack.id) %>
-					<% end %>
 					
 					<!-- favorite button - will show only if the hack wasn't created by current_user -->
 					<% if current_user != hack.user %>
@@ -65,18 +81,34 @@
 		<div role="tabpanel" class="tab-pane fade" id="recent">
 			<h2>Most Recent Life Hacks</h2>
 			<% @hacks.reverse.each do |hack| %>
-				<h3><%=hack.title%></h3>
+				<div class="hack_title">
+					<h3><%=hack.title%></h3>
+					<div class="hack_title_buttons">
+						<!-- dropdown for tags -->
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="glyphicon glyphicon-tags"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <% hack.tags.each do |tag| %>
+							    <li><%= tag.category %></li>
+						    <% end %>
+						  </ul>
+						</div>
+						<!-- link to edit hack only if created by current_user or if current_user is admin -->
+						<% if logged_in? and (current_user.admin? or current_user == hack.user) %>
+							<%= link_to edit_hack_path(hack.id) do %>
+								<i class="fa fa-pencil"></i>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
 				<%= image_tag hack.lhimg.url(:medium) %>
 				<p><%=hack.body%></p>
 				<% if logged_in? %>
 					
 					<!-- checking if the current_user already favorited the current hack -->
 					<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
-					
-					<!-- link to edit hack only if created by current_user or if current_user is admin -->
-					<% if current_user.admin? or current_user == hack.user %>
-							<%= link_to "Edit", edit_hack_path(hack.id) %>
-					<% end %>
 					
 					<!-- favorite button - will show only if the hack wasn't created by current_user -->
 					<% if current_user != hack.user %>

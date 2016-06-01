@@ -26,6 +26,7 @@
 						    <% end %>
 						  </ul>
 						</div>
+						<!-- button to edit hack -->
 						<%= link_to edit_hack_path(hack.id) do %>
 							<i class="fa fa-pencil"></i>
 						<% end %>
@@ -53,10 +54,24 @@
 		<!-- tab with all of the hacks the current_user favorited -->
 		<div role="tabpanel" class="tab-pane fade" id="favorites">
 			<% @fav_hacks.each do |fav| %>
-				<h3><%=fav.hack.title%></h3>
+				<div class="hack_title">
+					<h3><%=fav.hack.title%></h3>
+					<div class="hack_title_buttons">
+						<!-- dropdown for tags -->
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="glyphicon glyphicon-tags"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <% fav.hack.tags.each do |tag| %>
+							    <li><%= tag.category %></li>
+						    <% end %>
+						  </ul>
+						</div>
+					</div>
+				</div>
 				<%= image_tag fav.hack.lhimg.url(:medium) %>
 				<p><%=fav.hack.body%></p>
-
 				<!-- favorite button -->
 				<div id="fave_buttons_<%= fav.hack.id %>">
 					<%= link_to favorite_path(fav.id), method: :delete, remote: true, class: "unfave_button" do %>
