@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div id="index">
 
 	<!-- nav tabs to view most popular/most recent hacks -->
@@ -64,31 +63,6 @@
 					<!-- up/down vote buttons -->
 					<%= link_to like_hack_path(hack), method: :put, remote: true do %>
 						<i class="glyphicon glyphicon-triangle-top"></i>
-=======
-<!-- Listing of all the lifehacks in the database  -->
-<h1>Index</h1>
-<h2>Most Popular</h2>
-<% @hackvote.reverse.each do |hack| %>
-	<h3><%=hack.title%></h3>
-	<%= image_tag hack.lhimg.url(:medium) %>
-	<p><%=hack.body%></p>
-	<% if logged_in? %>
-		
-		<!-- checking if the current_user already favorited the current hack -->
-		<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
-			
-			<!-- link to edit hack only if created by current_user or if current_user is admin -->
-		<% if current_user.admin? or current_user == hack.user %>
-				<%= link_to "Edit", edit_hack_path(hack.id) %>
-		<% end %>
-		
-		<!-- favorite button - will show only if the hack wasn't created by current_user -->
-		<% if current_user != hack.user %>
-			<div class="fave_buttons_<%= hack.id %>">
-				<% if !hack.favorite %>
-					<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
-						<i class="fa fa-star-o"></i>
->>>>>>> 9f2013180d3fc4cbd3f692f9e04084bf1f53675d
 					<% end %>
 					<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
 						<i class="glyphicon glyphicon-triangle-bottom"></i>
