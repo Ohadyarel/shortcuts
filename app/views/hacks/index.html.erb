@@ -1,96 +1,145 @@
-<!-- Listing of all the lifehacks in the database  -->
-<h1>Index</h1>
-<h2>Trending</h2>
-<% @hackvote.reverse.each do |hack| %>
-	<h3><%=hack.title%></h3>
-	<%= image_tag hack.lhimg.url(:medium) %>
-	<p><%=hack.body%></p>
-	<% if logged_in? %>
-		
-		<!-- checking if the current_user already favorited the current hack -->
-		<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
-			
-			<!-- link to edit hack only if created by current_user or if current_user is admin -->
-		<% if current_user.admin? or current_user == hack.user %>
-				<%= link_to "Edit", edit_hack_path(hack.id) %>
-		<% end %>
-		
-		<!-- favorite button - will show only if the hack wasn't created by current_user -->
-		<% if current_user != hack.user %>
-			<div class="fave_buttons_<%= hack.id %>">
-				<% if !hack.favorite %>
-					<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
-						<i class="fa fa-star-o"></i>
+<div id="index">
+
+	<!-- nav tabs to view most popular/most recent hacks -->
+	<ul class="nav nav-tabs" role="tablist" id="index_tabs">
+	    <li role="presentation" class="active">
+		    <a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</a>
+		  </li>
+	    <li role="presentation">
+		    <a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a>
+		  </li>
+	</ul>
+
+	<!-- content of the tabs -->
+	<div class="tab-content">
+		<!-- Most popular life hacks  -->
+		<div role="tabpanel" class="tab-pane fade in active" id="popular">
+			<h2>Most Popular Life Hacks</h2>
+			<% @hackvote.reverse.each do |hack| %>
+				<div class="hack_title">
+					<h3><%=hack.title%></h3>
+					<div class="hack_title_buttons">
+						<!-- dropdown for tags -->
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="glyphicon glyphicon-tags"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <% hack.tags.each do |tag| %>
+							    <li><%= tag.category %></li>
+						    <% end %>
+						  </ul>
+						</div>
+						<!-- link to edit hack only if created by current_user or if current_user is admin -->
+						<% if logged_in? and (current_user.admin? or current_user == hack.user) %>
+							<%= link_to edit_hack_path(hack.id) do %>
+								<i class="fa fa-pencil"></i>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+				<%= image_tag hack.lhimg.url(:medium) %>
+				<p><%=hack.body%></p>
+				<% if logged_in? %>
+					
+					<!-- checking if the current_user already favorited the current hack -->
+					<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
+					
+					<!-- favorite button - will show only if the hack wasn't created by current_user -->
+					<% if current_user != hack.user %>
+						<div class="fave_buttons_<%= hack.id %>">
+							<% if !hack.favorite %>
+								<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
+									<i class="fa fa-star-o"></i>
+								<% end %>
+							<% else %>
+								<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
+									<i class="fa fa-star"></i>
+								<% end %>
+							<% end %>
+						</div>
 					<% end %>
-				<% else %>
-					<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
-						<i class="fa fa-star"></i>
+					
+					<!-- up/down vote buttons -->
+					<%= link_to like_hack_path(hack), method: :put, remote: true do %>
+						<i class="glyphicon glyphicon-triangle-top"></i>
 					<% end %>
-				<% end %>
-			</div>
-		<% end %>
-		
-		<!-- up/down vote buttons -->
-		<%= link_to like_hack_path(hack), method: :put, remote: true do %>
-			<i class="glyphicon glyphicon-triangle-top"></i>
-		<% end %>
-		<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
-			<i class="glyphicon glyphicon-triangle-bottom"></i>
-		<% end %>
-	<% end %>
-	
-	<!-- up/down vote counters -->
-	<div class="vote_counts">
-		<span class="upvote_count_<%= hack.id %>"><%= hack.get_upvotes.size %></span>
-		<span class="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
-	</div>
-<% end %>
-<hr>
-<h2>Most Recent</h2>
-<% @hacks.reverse.each do |hack| %>
-	<h3><%=hack.title%></h3>
-	<%= image_tag hack.lhimg.url(:medium) %>
-	<p><%=hack.body%></p>
-	<% if logged_in? %>
-		
-		<!-- checking if the current_user already favorited the current hack -->
-		<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
-		
-		<!-- link to edit hack only if created by current_user or if current_user is admin -->
-		<% if current_user.admin? or current_user == hack.user %>
-				<%= link_to "Edit", edit_hack_path(hack.id) %>
-		<% end %>
-		
-		<!-- favorite button - will show only if the hack wasn't created by current_user -->
-		<% if current_user != hack.user %>
-			<div class="fave_buttons_<%= hack.id %>">
-				<% if !hack.favorite %>
-					<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
-						<i class="fa fa-star-o"></i>
-					<% end %>
-				<% else %>
-					<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
-						<i class="fa fa-star"></i>
+					<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
+						<i class="glyphicon glyphicon-triangle-bottom"></i>
 					<% end %>
 				<% end %>
-			</div>
-		<% end %>
+				
+				<!-- up/down vote counters -->
+				<div class="vote_counts">
+					<span class="upvote_count_<%= hack.id %>"><%= hack.get_upvotes.size %></span>
+					<span class="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
+				</div>
+			<% end %>
+		</div>
 
-		<!-- up/down vote buttons -->
-		<%= link_to like_hack_path(hack), method: :put, remote: true do %>
-			<i class="glyphicon glyphicon-triangle-top"></i>
-		<% end %>
-		<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
-			<i class="glyphicon glyphicon-triangle-bottom"></i>
-		<% end %>
-	<% end %>
+		<!-- Most Recent life hacks -->
+		<div role="tabpanel" class="tab-pane fade" id="recent">
+			<h2>Most Recent Life Hacks</h2>
+			<% @hacks.reverse.each do |hack| %>
+				<div class="hack_title">
+					<h3><%=hack.title%></h3>
+					<div class="hack_title_buttons">
+						<!-- dropdown for tags -->
+						<div class="dropdown">
+						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    <span class="glyphicon glyphicon-tags"></span>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						    <% hack.tags.each do |tag| %>
+							    <li><%= tag.category %></li>
+						    <% end %>
+						  </ul>
+						</div>
+						<!-- link to edit hack only if created by current_user or if current_user is admin -->
+						<% if logged_in? and (current_user.admin? or current_user == hack.user) %>
+							<%= link_to edit_hack_path(hack.id) do %>
+								<i class="fa fa-pencil"></i>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+				<%= image_tag hack.lhimg.url(:medium) %>
+				<p><%=hack.body%></p>
+				<% if logged_in? %>
+					
+					<!-- checking if the current_user already favorited the current hack -->
+					<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
+					
+					<!-- favorite button - will show only if the hack wasn't created by current_user -->
+					<% if current_user != hack.user %>
+						<div class="fave_buttons_<%= hack.id %>">
+							<% if !hack.favorite %>
+								<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
+									<i class="fa fa-star-o"></i>
+								<% end %>
+							<% else %>
+								<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
+									<i class="fa fa-star"></i>
+								<% end %>
+							<% end %>
+						</div>
+					<% end %>
 
-	<!-- up/down vote counters -->
-	<div class="vote_counts">
-		<span class="upvote_count_<%= hack.id %>"><%= hack.get_upvotes.size %></span>
-		<span class="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
+					<!-- up/down vote buttons -->
+					<%= link_to like_hack_path(hack), method: :put, remote: true do %>
+						<i class="glyphicon glyphicon-triangle-top"></i>
+					<% end %>
+					<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
+						<i class="glyphicon glyphicon-triangle-bottom"></i>
+					<% end %>
+				<% end %>
+
+				<!-- up/down vote counters -->
+				<div class="vote_counts">
+					<span class="upvote_count_<%= hack.id %>"><%= hack.get_upvotes.size %></span>
+					<span class="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
+				</div>
+			<% end %>
+		</div>
 	</div>
-<% end %>
-
-<!-- Sidebar containing the top 10 categories -->
-
+</div>
