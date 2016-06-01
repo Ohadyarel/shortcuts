@@ -1,0 +1,12 @@
+<div class="hack_title_buttons">
+	<div class="dropdown">
+	  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	    <span class="glyphicon glyphicon-tags"></span>
+	  </button>
+	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	    <% hack.tags.each do |tag| %>
+		    <li><%= tag.category %></li>
+	    <% end %>
+	  </ul>
+	</div>
+</div>
