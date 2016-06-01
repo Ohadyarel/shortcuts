@@ -6,21 +6,23 @@
 	<p><%=hack.body%></p>
 	<% if logged_in? %>
 		<!-- 	if there is a user in session show the favorite/unfavorite and edit -->
-		<% @favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
+		<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
 
 			<!-- link to edit hack only if created by current_user or if current_user is admin -->
 		<% if current_user.admin? or current_user == hack.user %>
 				<%= link_to "Edit", edit_hack_path(hack.id) %>
 			<% if current_user != hack.user %>
-				<% if !@favorite %>
-					<%= link_to favorites_path(hack_id: hack.id), method: :post do %>
-						<i class="fa fa-star-o"></i>
+				<div id="fave_buttons_<%= hack.id %>">
+					<% if !hack.favorite %>
+						<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
+							<i class="fa fa-star-o"></i>
+						<% end %>
+					<% else %>
+						<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
+							<i class="fa fa-star"></i>
+						<% end %>
 					<% end %>
-				<% else %>
-					<%= link_to favorite_path(@favorite.id), method: :delete do %>
-						<i class="fa fa-star"></i>
-					<% end %>
-				<% end %>
+				</div>
 			<% end %>
 		<%end%>
 
@@ -36,3 +38,4 @@
 <% end %>
 
 <!-- Sidebar containing the top 10 categories -->
+
