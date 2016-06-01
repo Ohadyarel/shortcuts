@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		@hacks=@user.hacks
+		@fav_hacks=Favorite.where(user_id: current_user.id).all
 	end
 
 	def new
