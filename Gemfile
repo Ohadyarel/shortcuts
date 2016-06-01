@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'jquery-ui-rails'
 gem 'tzinfo-data'
 # paperclip for image uploads
 gem "paperclip", "~> 4.2"
