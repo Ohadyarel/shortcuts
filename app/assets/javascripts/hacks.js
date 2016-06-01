@@ -12,11 +12,5 @@ $(document).ready(function(){
 		$("#tag-array").val(tagArray)
 		// console.log(tagArray);
 	});
-
-	// autocomplete tags
-	// $( "#tags" ).autocomplete({
- //      source: availableTags
- //    });
-
 	
 })
