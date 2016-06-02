@@ -224,3 +224,97 @@
 .tag_cloud:hover {
 	background:grey;
 }
+
+/*=============================================*/
+
+/*================ index#hacks ================*/
+
+#index_tabs {
+	width: 100%;
+	margin: 20px auto;
+	border: none;
+	text-align: center;
+}
+
+#index_tabs li {
+	float: none;
+	display: inline-block;
+}
+
+#index_tabs .active  a{
+	background: black;
+	color: white;
+	border-radius:4px;
+}
+
+#index_tabs a {
+	background: white;
+	color: black;
+	font-size: 1.2em;
+	font-weight: bold;
+	border-radius:4px;
+}
+
+/*=============================================*/
+
+/*================= show#user =================*/
+
+#profile_tabs {
+	width: 100%;
+	margin: 20px auto;
+	border: none;
+	text-align: center;
+}
+
+#profile_tabs li {
+	float: none;
+	display: inline-block;
+}
+
+#profile_tabs .active  a{
+	background: black;
+	color: white;
+	border-radius:4px;
+}
+
+#profile_tabs a {
+	background: white;
+	color: black;
+	font-size: 1.2em;
+	font-weight: bold;
+	border-radius:4px;
+}
+
+/*=============================================*/
+
+/*================== show#tag =================*/
+
+#tag h2 {
+	width: 85%;
+	margin: 30px auto;
+}
+
+#tag h2 span {
+	color: white;
+}
+
+/*=============================================*/
+
+/*================ break point ================*/
+
+@media (min-width: 768px) {
+	.view {
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+
+@media (min-width: 1200px) {
+	.view {
+		width: 65%;
+		margin: 0 auto;
+	}
+}
+
+/*=============================================*/
+

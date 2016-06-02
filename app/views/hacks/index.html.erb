@@ -1,5 +1,4 @@
-<div class="sidebar"></div>
-<div id="index">
+<div id="index" class="view">
 
 	<!-- nav tabs to view most popular/most recent hacks -->
 	<ul class="nav nav-tabs" role="tablist" id="index_tabs">
@@ -15,7 +14,6 @@
 	<div class="tab-content">
 		<!-- Most popular life hacks  -->
 		<div role="tabpanel" class="tab-pane fade in active" id="popular">
-			<h2>Most Popular Life Hacks</h2>
 			<% @hackvote.reverse.each do |hack| %>
 				<div class="hack">
 					<div class="hack_title">
@@ -96,7 +94,6 @@
 
 		<!-- Most Recent life hacks -->
 		<div role="tabpanel" class="tab-pane fade" id="recent">
-			<h2>Most Recent Life Hacks</h2>
 			<% @hacks.reverse.each do |hack| %>
 				<div class="hack">	
 					<div class="hack_title">

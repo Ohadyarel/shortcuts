@@ -1,76 +1,78 @@
-<h1>Category: <%=@tag.category%></h1>
-<%@hacks.each do |hack|%>
-	<div class="hack">
-		<div class="hack_title">
-			<!-- display the hack's title -->
-			<h3><%=hack.title%></h3>
+<div id="tag" class="view">
+	<h2>Tag: <span class="tag_cloud"><%=@tag.category%></span></h2>
+	<%@hacks.each do |hack|%>
+		<div class="hack">
+			<div class="hack_title">
+				<!-- display the hack's title -->
+				<h3><%=hack.title%></h3>
 
-			<!-- link to edit hack only if created by current_user or if current_user is admin -->
-			<div class="hack_edit_button">
-				<% if logged_in? and (current_user.admin? or current_user == hack.user) %>
-					<%= link_to edit_hack_path(hack.id) do %>
-						<span class="glyphicon glyphicon-pencil"></span>
+				<!-- link to edit hack only if created by current_user or if current_user is admin -->
+				<div class="hack_edit_button">
+					<% if logged_in? and (current_user.admin? or current_user == hack.user) %>
+						<%= link_to edit_hack_path(hack.id) do %>
+							<span class="glyphicon glyphicon-pencil"></span>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+
+			<!-- hack's image -->
+			<div class="hack_img">
+				<%= image_tag hack.lhimg.url(:medium) %>
+			</div>
+
+			<div class="hack_img_footer">
+				<% if logged_in? %>
+					<!-- checking if the current_user already favorited the current hack -->
+					<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
+					
+					<!-- favorite button - will show only if the hack wasn't created by current_user -->
+					<% if current_user != hack.user %>
+						<div class="fave_buttons_<%= hack.id %>">
+							<% if !hack.favorite %>
+								<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
+									<span class="glyphicon glyphicon-star-empty yellow_h"></span>
+								<% end %>
+							<% else %>
+								<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
+									<span class="glyphicon glyphicon-star yellow_h"></span>
+								<% end %>
+							<% end %>
+						</div>
+					<% end %>
+					
+					<!-- up/down vote buttons -->
+					<%= link_to like_hack_path(hack), method: :put, remote: true do %>
+						<span class="glyphicon glyphicon-triangle-top green_h"></span>
+					<% end %>
+					<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
+						<span class="glyphicon glyphicon-triangle-bottom red_h"></span>
 					<% end %>
 				<% end %>
+
+				<!-- display the username of the creator of the hack -->
+				<p><%= hack.user.username %></p>
+			</div>
+			
+			<!-- up/down vote counters -->
+			<div class="hack_vote_counters">
+				<span class="upvote_count_<%= hack.id %> green"><%= hack.get_upvotes.size %></span>
+				<span class="downvote_count_<%= hack.id %> red"><%= hack.get_downvotes.size %></span>
+			</div>
+
+			<!-- the text body of the hack -->
+			<div class="hack_body">
+				<p><%=hack.body%></p>
+			</div>
+
+			<!-- displaying all the hack's tags -->
+			<div class="hack_tags">
+				<% hack.tags.each do |tag| %>
+		    	<div class="tag_cloud">
+			    	<%= link_to tag.category, tag_path(tag.id)%>
+			    </div>
+		    <% end %>
 			</div>
 		</div>
-
-		<!-- hack's image -->
-		<div class="hack_img">
-			<%= image_tag hack.lhimg.url(:medium) %>
-		</div>
-
-		<div class="hack_img_footer">
-			<% if logged_in? %>
-				<!-- checking if the current_user already favorited the current hack -->
-				<% hack.favorite = Favorite.where(user_id: current_user.id, hack_id: hack.id).first %>
-				
-				<!-- favorite button - will show only if the hack wasn't created by current_user -->
-				<% if current_user != hack.user %>
-					<div class="fave_buttons_<%= hack.id %>">
-						<% if !hack.favorite %>
-							<%= link_to favorites_path(hack), method: :post, remote: true, class: "fave_button" do %>
-								<span class="glyphicon glyphicon-star-empty yellow_h"></span>
-							<% end %>
-						<% else %>
-							<%= link_to favorite_path(hack.favorite.id), method: :delete, remote: true, class: "unfave_button" do %>
-								<span class="glyphicon glyphicon-star yellow_h"></span>
-							<% end %>
-						<% end %>
-					</div>
-				<% end %>
-				
-				<!-- up/down vote buttons -->
-				<%= link_to like_hack_path(hack), method: :put, remote: true do %>
-					<span class="glyphicon glyphicon-triangle-top green_h"></span>
-				<% end %>
-				<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
-					<span class="glyphicon glyphicon-triangle-bottom red_h"></span>
-				<% end %>
-			<% end %>
-
-			<!-- display the username of the creator of the hack -->
-			<p><%= hack.user.username %></p>
-		</div>
-		
-		<!-- up/down vote counters -->
-		<div class="hack_vote_counters">
-			<span class="upvote_count_<%= hack.id %> green"><%= hack.get_upvotes.size %></span>
-			<span class="downvote_count_<%= hack.id %> red"><%= hack.get_downvotes.size %></span>
-		</div>
-
-		<!-- the text body of the hack -->
-		<div class="hack_body">
-			<p><%=hack.body%></p>
-		</div>
-
-		<!-- displaying all the hack's tags -->
-		<div class="hack_tags">
-			<% hack.tags.each do |tag| %>
-	    	<div class="tag_cloud">
-		    	<%= link_to tag.category, tag_path(tag.id)%>
-		    </div>
-	    <% end %>
-		</div>
-	</div>
-<%end%>
+	<%end%>
+</div>
