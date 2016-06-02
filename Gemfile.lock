@@ -175,6 +175,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  nokogiri
   paperclip (~> 4.2)
   pg (~> 0.15)
   rails (= 4.2.6)
