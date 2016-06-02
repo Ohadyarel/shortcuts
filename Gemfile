@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
+gem 'font-awesome-rails'
 gem 'tzinfo-data'
 # paperclip for image uploads
 gem "paperclip", "~> 4.2"
