@@ -91,5 +91,5 @@
 		<span class="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
 	</div>
 <% end %>
-
+<%= paginate(@hacks) %>
 <!-- Sidebar containing the top 10 categories -->

@@ -8,10 +8,10 @@ class HacksController < ApplicationController
 			if @tag
 				@hacks=@tag.hacks
 			else
-				@hacks=Hack.all	
+				@hacks=Hack.page(params[:page]).per(10)
 			end
 		else
-			@hacks=Hack.all
+			@hacks=Hack.page(params[:page]).per(10)
 		end
 		
 		#variables for most popular life hacks based on upvotes
