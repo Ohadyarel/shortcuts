@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'tzinfo-data'
 # paperclip for image uploads
