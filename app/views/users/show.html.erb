@@ -12,41 +12,57 @@
 		<!-- tab with all of the hacks created by current user -->
 		<div role="tabpanel" class="tab-pane fade in active" id="hacks">
 			<% @hacks.each do |hack| %>
-				<div class="hack_title">
-					<h3><%=hack.title%></h3>
-					<div class="hack_title_buttons">
-						<!-- dropdown for tags -->
-						<div class="dropdown">
-						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						    <span class="glyphicon glyphicon-tags"></span>
-						  </button>
-						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						    <% hack.tags.each do |tag| %>
-							    <li><%= tag.category %></li>
-						    <% end %>
-						  </ul>
-						</div>
-						<!-- button to edit hack -->
-						<%= link_to edit_hack_path(hack.id) do %>
-							<i class="fa fa-pencil"></i>
-						<% end %>
-					</div>
-				</div>
-				<%= image_tag hack.lhimg.url(:medium) %>
-				<p><%=hack.body%></p>
-				
-				<!-- up/down vote buttons -->
-				<%= link_to like_hack_path(hack), method: :put, remote: true do %>
-					<i class="glyphicon glyphicon-triangle-top"></i>
-				<% end %>
-				<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
-					<i class="glyphicon glyphicon-triangle-bottom"></i>
-				<% end %>
+				<div class="hacks">
+					<div class="hack_title">
+						<!-- display the hack's title -->
+						<h3><%=hack.title%></h3>
 
-				<!-- up/down vote counters -->
-				<div class="vote_counts">
-					<span id="upvote_count_<%= hack.id %>"><%= hack.get_upvotes.size %></span>
-					<span id="downvote_count_<%= hack.id %>"><%= hack.get_downvotes.size %></span>
+						<!-- button to edit hack -->
+						<div class="hack_edit_button">
+							<%= link_to edit_hack_path(hack.id) do %>
+								<span class="glyphicon glyphicon-pencil"></span>
+							<% end %>
+						</div>
+					</div>
+
+					<!-- hack's image -->
+					<div class="hack_img">
+						<%= image_tag hack.lhimg.url(:medium) %>
+					</div>
+					
+					<div class="hack_img_footer">
+						<!-- up/down vote buttons -->
+						<%= link_to like_hack_path(hack), method: :put, remote: true do %>
+							<i class="glyphicon glyphicon-triangle-top green_h"></i>
+						<% end %>
+						<%= link_to dislike_hack_path(hack), method: :put, remote: true do %>
+							<i class="glyphicon glyphicon-triangle-bottom red_h"></i>
+						<% end %>
+
+						<!-- display the username of the creator of the hack -->
+						<p><%= hack.user.username %></p>
+					</div>
+
+					<!-- up/down vote counters -->
+					<div class="hack_vote_counters">
+						<span class="upvote_count_<%= hack.id %> green"><%= hack.get_upvotes.size %></span>
+						<span>/</span>
+						<span class="downvote_count_<%= hack.id %> red"><%= hack.get_downvotes.size %></span>
+					</div>
+
+					<!-- the text body of the hack -->
+					<div class="hack_body">
+						<p><%=hack.body%></p>
+					</div>
+
+					<!-- displaying all the hack's tags -->
+					<div class="hack_tags">
+						<% hack.tags.each do |tag| %>
+							<div class="tag_cloud">
+					    	<%= link_to tag.category, tag_path(tag.id)%>
+					    </div>
+				    <% end %>
+					</div>
 				</div>
 			<%end%>
 		</div>
@@ -54,43 +70,58 @@
 		<!-- tab with all of the hacks the current_user favorited -->
 		<div role="tabpanel" class="tab-pane fade" id="favorites">
 			<% @fav_hacks.each do |fav| %>
-				<div class="hack_title">
-					<h3><%=fav.hack.title%></h3>
-					<div class="hack_title_buttons">
-						<!-- dropdown for tags -->
-						<div class="dropdown">
-						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						    <span class="glyphicon glyphicon-tags"></span>
-						  </button>
-						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						    <% fav.hack.tags.each do |tag| %>
-							    <li><%= tag.category %></li>
-						    <% end %>
-						  </ul>
-						</div>
+				<div class="hack">
+					<div class="hack_title">
+						<!-- display the hack's title -->
+						<h3><%=fav.hack.title%></h3>
 					</div>
-				</div>
-				<%= image_tag fav.hack.lhimg.url(:medium) %>
-				<p><%=fav.hack.body%></p>
-				<!-- favorite button -->
-				<div id="fave_buttons_<%= fav.hack.id %>">
-					<%= link_to favorite_path(fav.id), method: :delete, remote: true, class: "unfave_button" do %>
-						<i class="fa fa-star"></i>
-					<% end %>
-				</div>
 
-				<!-- up/down vote buttons -->
-				<%= link_to like_hack_path(fav.hack), method: :put, remote: true do %>
-					<i class="glyphicon glyphicon-triangle-top"></i>
-				<% end %>
-				<%= link_to dislike_hack_path(fav.hack), method: :put, remote: true do %>
-					<i class="glyphicon glyphicon-triangle-bottom"></i>
-				<% end %>
+					<!-- hack's image -->
+					<div class="hack_img">
+						<%= image_tag fav.hack.lhimg.url(:medium) %>
+					</div>
 
-				<!-- up/down vote counters -->
-				<div class="vote_counts">
-					<span id="upvote_count_<%= fav.hack.id %>"><%= fav.hack.get_upvotes.size %></span>
-					<span id="downvote_count_<%= fav.hack.id %>"><%= fav.hack.get_downvotes.size %></span>
+					<div class="hack_img_footer">
+						<!-- unfavorite button -->
+						<div class="fave_buttons_<%= fav.hack.id %>">
+							<%= link_to favorite_path(fav.id), method: :delete, remote: true, class: "unfave_button" do %>
+								<span class="glyphicon glyphicon-star yellow_h"></span>
+							<% end %>
+						</div>
+
+						<!-- up/down vote buttons -->
+						<%= link_to like_hack_path(fav.hack), method: :put, remote: true do %>
+							<span class="glyphicon glyphicon-triangle-top green_h"></span>
+						<% end %>
+						<%= link_to dislike_hack_path(fav.hack), method: :put, remote: true do %>
+							<span class="glyphicon glyphicon-triangle-bottom red_h"></span>
+						<% end %>
+
+						<!-- display the username of the creator of the hack -->
+						<p><%= fav.hack.user.username %></p>
+					</div>
+
+
+					<!-- up/down vote counters -->
+					<div class="hack_vote_counters">
+						<span id="upvote_count_<%= fav.hack.id %> green"><%= fav.hack.get_upvotes.size %></span>
+						<span>/</span>
+						<span id="downvote_count_<%= fav.hack.id %> red"><%= fav.hack.get_downvotes.size %></span>
+					</div>
+
+					<!-- the text body of the hack -->
+					<div class="hack_body">
+						<p><%=fav.hack.body%></p>
+					</div>
+
+					<!-- displaying all the hack's tags -->
+					<div class="hack_tags">
+						<% fav.hack.tags.each do |tag| %>
+							<div class="tag_cloud">
+					    	<%= link_to tag.category, tag_path(tag.id)%>
+					    </div>
+				    <% end %>
+					</div>
 				</div>
 			<%end%>
 		</div>
