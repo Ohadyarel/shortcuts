@@ -15,7 +15,48 @@
  *= require jquery-ui
  *= require font-awesome
  */
+ body{
+ 	margin: 0 auto;
+ }
 
+nav{
+	background-color:lightblue;
+	height: 50px;
+	padding: 5px 5px;
+}
+nav	.logo{
+	float: left;
+}
+nav a{
+	color:black;
+	display: inline;
+	float: right;
+}
+nav .glyphicon-plus{
+	float: right;
+}
+nav a{
+	float: left;
+	padding:5px;
+}
+/*nav .dropdown-menu{
+	float:right;
+}*/
+nav .dropdown{
+	float: right;
+}
+
+nav #search-form{
+	width:50%;
+	float: left;
+}
+nav #search-form input[type=text]{
+	width:80%;
+	padding-left: 5px;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+}
 /*forms*/
 #form-bg{
 	background-image: url("potential-bg3.png");
@@ -84,25 +125,6 @@
 	border-color:black;
 	color: red;
 }
-/*#upload-button{
-	text-align: center;
-	width:200px;
-	height:35px;
-	border: 2px solid lightgray;
-	border-radius: 4px;
-	background-color:white;
-	border-color:lightgray;
-}
-#upload-button input{
-	opacity: 0;
-	z-index: 100;
-}
-#upload-button span{
-	z-index: -100;
-	color: lightgray;
-}*/
-/*end forms*/
-
 .input-group-addon{
 	/*background-color: red;*/
 	border:black solid 2px;
