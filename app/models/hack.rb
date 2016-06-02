@@ -5,6 +5,10 @@ class Hack < ActiveRecord::Base
 	has_many :tags, through: :hack_tags
 	acts_as_votable
 
+	# added maxlength to inputfields
+	# validates_length_of :title, :maximum => 150
+	# validates_length_of :body, :maximum => 150
+
 	# validates image attachment
 	has_attached_file :lhimg, :styles =>
 	{ :medium => "300x300>", :thumb => "100x100>" },
