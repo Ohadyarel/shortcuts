@@ -55,16 +55,20 @@ class HacksController < ApplicationController
 
 		# captures the tags and converts to an array
 		@allTags = params[:hack][:tags]
-		@arrTags = @allTags.split(",").map(&:strip)
-
-		# loop through each tag
-		@arrTags.each do |tag|
-			# if the tag exists, create the hack tag
-			if @tag=Tag.where(category:tag).first
-				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
-			else
-				@tag=Tag.create(category: tag)
-				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+		puts "hajfdkajndfkvjankfdjnvakjdfnvkajdnfvkjandfkjvnakdfjnvakjdfnvkajdnfv"
+		puts @allTags
+		puts "hajfdkajndfkvjankfdjnvakjdfnvkajdnfvkjandfkjvnakdfjnvakjdfnvkajdnfv"
+		if !@allTags.blank?
+			@arrTags = @allTags.split(",").map(&:strip)
+			# loop through each tag
+			@arrTags.each do |tag|
+				# if the tag exists, create the hack tag
+				if @tag=Tag.where(category:tag).first
+					HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+				else
+					@tag=Tag.create(category: tag)
+					HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+				end
 			end
 		end
 
@@ -102,7 +106,9 @@ class HacksController < ApplicationController
 	# destroy a lifehack :(
 	def destroy
 		@hack = Hack.find(params[:id])
-		@hack.destroy
+		@hack.hack_tags.delete_all
+		@hack.favorites.delete_all
+		@hack.delete
 		redirect_to hacks_path
 	end
 

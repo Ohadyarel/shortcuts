@@ -44,6 +44,8 @@ class UsersController < ApplicationController
 
 	def destroy
 		@user = current_user
+		@user.hacks.delete_all
+		@user.favorites.delete_all
 		@user.destroy
 		log_out
 		redirect_to root_path
