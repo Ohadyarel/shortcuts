@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       put "dislike", to: "hacks#downvote"
     end
   end
-  resources :tags, only: [:create]
+  resources :tags, only: [:create, :show]
   resources :hack_tags, only: [:destroy]
   resources :favorites, only: [:destroy]
   post 'favorites/:id' => "favorites#create", as: :favorites
