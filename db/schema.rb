@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531151815) do
+ActiveRecord::Schema.define(version: 20160602214841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160531151815) do
     t.string   "lhimg_content_type"
     t.integer  "lhimg_file_size"
     t.datetime "lhimg_updated_at"
+    t.string   "lhimgurl"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -32,7 +32,14 @@
 						<% end %>
 					</div>
 				</div>
-				<%= image_tag hack.lhimg.url(:medium) %>
+				<!-- image of life hack -->
+				<!-- if the image is set to the missing.png, then get the http link to img -->
+				<%if hack.lhimg.url == "/images/original/missing.png"%>
+					<img src="<%=hack.lhimgurl%>">
+				<%else%>
+					<%= image_tag hack.lhimg.url(:medium) %><br>
+				<%end%>
+				<!-- end of image of life hack -->
 				<p><%=hack.body%></p>
 				
 				<!-- up/down vote buttons -->
@@ -70,7 +77,14 @@
 						</div>
 					</div>
 				</div>
-				<%= image_tag fav.hack.lhimg.url(:medium) %>
+				<!-- image of life hack -->
+				<!-- if the image is set to the missing.png, then get the http link to img -->
+				<%if fav.hack.lhimg.url == "/images/original/missing.png"%>
+					<img src="<%=fav.hack.lhimgurl%>">
+				<%else%>
+					<%= image_tag fav.hack.lhimg.url(:medium) %><br>
+				<%end%>
+				<!-- end of image of life hack -->
 				<p><%=fav.hack.body%></p>
 				<!-- favorite button -->
 				<div id="fave_buttons_<%= fav.hack.id %>">
