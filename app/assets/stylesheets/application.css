@@ -83,25 +83,6 @@
 	border-color:black;
 	color: red;
 }
-/*#upload-button{
-	text-align: center;
-	width:200px;
-	height:35px;
-	border: 2px solid lightgray;
-	border-radius: 4px;
-	background-color:white;
-	border-color:lightgray;
-}
-#upload-button input{
-	opacity: 0;
-	z-index: 100;
-}
-#upload-button span{
-	z-index: -100;
-	color: lightgray;
-}*/
-/*end forms*/
-
 .input-group-addon{
 	/*background-color: red;*/
 	border:black solid 2px;

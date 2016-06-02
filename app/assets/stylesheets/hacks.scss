@@ -1,0 +1,23 @@
+#login-box{
+	background:gray;
+	/*width:400px;*/
+}
+
+#login-box input[type=text],input[type=password]{
+	text-align: center;
+	width:30%;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+	float: left;
+	display: inline-block;
+}
+#search-form input[type=text]{
+	width:40%;
+	/*text-align: center;*/
+	padding-left: 5px;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+	/*background-color: red;*/
+}
