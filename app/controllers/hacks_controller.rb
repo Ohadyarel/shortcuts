@@ -106,9 +106,9 @@ class HacksController < ApplicationController
 	# destroy a lifehack :(
 	def destroy
 		@hack = Hack.find(params[:id])
-		@hack.hack_tags.delete_all
-		@hack.favorites.delete_all
-		@hack.delete
+		@hack.hack_tags.destroy_all
+		@hack.favorites.destroy_all
+		@hack.destroy
 		redirect_to hacks_path
 	end
 
