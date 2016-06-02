@@ -20,34 +20,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= flash[:alert] if flash[:alert]%>
-	<%= flash[:notice] if flash[:notice]%>
-
-	<ul class="nav nav-tabs">
+	<!-- <ul class="nav nav-tabs"> -->
+	<!-- current user is logged int -->
 		<%if current_user%>
-		  <!-- search bar -->
-		  <%= form_tag(hacks_path, method: :get, id: "search-form") do %>
-				<%= text_field_tag :search, params[:search], placeholder: "Search Tags" %>
-				<%= submit_tag "Search" %>
-			<% end %>
+			<nav>
+				<%=link_to image_tag("shortcuts-bulb_mini_20x30.png"), hacks_path, class: "logo" %>
+			  <!-- search bar -->
+			  <%= form_tag(hacks_path, method: :get, id: "search-form") do %>
+					<%= text_field_tag :search, params[:search], placeholder: "Search Tags" %>
+					<%= submit_tag "Search" %>
+				<% end %>
 
-			<!-- <button type="button" class="btn btn-default btn-lg"> -->
+				<!-- </button> -->
+				<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				    <li><%=link_to "Home", hacks_path%></li>
+					  <li><%=link_to "Profile", user_path(current_user.id)%></li>
+					  
+					  <li><%=link_to "Edit Profile", edit_user_path(current_user.id)%></li>
+					  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
+				  </ul>
+				</div>
+				<!-- <button type="button" class="btn btn-default btn-lg"> -->
+					<!-- add a hack -->
 				<%=link_to new_hack_path do %>
 			  	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 			  <% end %>
-			<!-- </button> -->
-			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-			    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-			  </button>
-			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			    <li><%=link_to "Home", hacks_path%></li>
-				  <li><%=link_to "Profile", user_path(current_user.id)%></li>
-				  
-				  <li><%=link_to "Edit Profile", edit_user_path(current_user.id)%></li>
-				  <li><%=link_to "Log Out", session_path(current_user.id), method: "delete"%></li>
-			  </ul>
-		</div>
+			</nav>
 		<%else%>
 			<!-- login form -->
 			<%=form_tag sessions_path do%>
@@ -59,7 +61,10 @@
 			<%end%>
 			<%= button_to "Sign Up", new_user_path %>
 		 <%end%>
-	</ul>
+	<!-- </ul> -->
+
+	<%= flash[:alert] if flash[:alert]%>
+	<%= flash[:notice] if flash[:notice]%>
 
 <%= yield %>
 
