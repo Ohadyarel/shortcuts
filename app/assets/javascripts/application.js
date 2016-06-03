@@ -44,18 +44,18 @@ $(document).on('keyup', '#search', function() {
 });
 
 // autocomplete for tags
-$(document).on('keyup', '#search', function() {
-	// alert("in input field")
-	$.ajax({
-	  type:"GET",
-	  dataType:"json",
-	  // gets the tags from the database
-	  success:function(result){
-	  	// autocomplete
-	  	$( "#search" ).autocomplete({  
-     	source: result
-	    });
-	  }
-	})
-});
+// $(document).on('keyup', '#search', function() {
+// 	// alert("in input field")
+// 	$.ajax({
+// 	  type:"GET",
+// 	  dataType:"json",
+// 	  // gets the tags from the database
+// 	  success:function(result){
+// 	  	// autocomplete
+// 	  	$( "#search" ).autocomplete({  
+//      	source: result
+// 	    });
+// 	  }
+// 	})
+// });
 

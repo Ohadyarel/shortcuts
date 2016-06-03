@@ -33,7 +33,7 @@ $(document).ready(function(){
 	});
 
 	// autocomplete for tags
-	$('#tag-input').on('keyup', function() {
+	$('#tag').on('keyup', function() {
 		$.ajax({
 		  type:"GET",
 		  url:"new",
@@ -41,12 +41,28 @@ $(document).ready(function(){
 		  // gets the tags from the database
 		  success:function(result){
 		  	// autocomplete
-		  	$( "#tag-input" ).autocomplete({  
+		  	$( "#tag" ).autocomplete({  
 	     	source: result
 		    });
 		  }
 		})
 	});
+
+	// // autocomplete for tags
+	// $('#tag').on('keyup', function() {
+	// 	$.ajax({
+	// 	  type:"GET",
+	// 	  url:"edit",
+	// 	  dataType:"json",
+	// 	  // gets the tags from the database
+	// 	  success:function(result){
+	// 	  	// autocomplete
+	// 	  	$( "#tag" ).autocomplete({  
+	//      	source: result
+	// 	    });
+	// 	  }
+	// 	})
+	// });
 
 })
 
