@@ -23,7 +23,7 @@
 
 	<nav>
 		<!-- logo that links to root_path -->
-		<%=link_to image_tag("shortcuts-bulb_mini_20x30.png"), hacks_path, class: "logo" %>
+		<%=link_to image_tag("shortcuts-bulb_mini_20x30_white.png"), hacks_path, class: "logo" %>
 	  
 	  <!-- search bar -->
 	  <%= form_tag(hacks_path, method: :get, id: "search-form") do %>
@@ -60,12 +60,12 @@
 			  </button>
 			  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" id="login_list">
 			    <%= form_tag sessions_path do%>
-				    <li><%=text_field_tag :username, nil, :placeholder=>"Username" %></li>
+				    <li><%=text_field_tag :username, nil, :placeholder=>"Username", id: "login_username" %></li>
 					  <li><%=password_field_tag :password, nil, :placeholder=> "Password", id: "login_pass" %></li>
-					  <li><%=submit_tag "Log in" %></li>
-					  <li role="separator" class="divider"></li>
-					  <li><%= link_to "Sign Up", new_user_path %></li>
+					  <li><%=submit_tag "Log in", id:"login_button" %></li>
 					<%end%>
+					  <li role="separator" class="divider"></li>
+					  <li id="signup-li"><%= button_to "Sign Up", new_user_path, method: :get, id:"signup_button" %></li>
 			  </ul>
 			</div>
 		 <%end%>

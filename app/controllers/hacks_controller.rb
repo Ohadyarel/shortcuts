@@ -8,10 +8,10 @@ class HacksController < ApplicationController
 			if @tag
 				@hacks=@tag.hacks
 			else
-				@hacks=Hack.page(params[:page]).per(10)
+				@hacks=Hack.all
 			end
 		else
-			@hacks=Hack.page(params[:page]).per(10)
+			@hacks=Hack.all
 		end
 		
 		# creates an array to be used for search autocomplete
