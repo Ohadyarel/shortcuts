@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	// array of tags 
 	var tagArray=[]
+	$("#tag-array").val(tagArray)
 	$("#submit-tag").on('click',function(e) {
     tagArray.push($("#tag").val());
     $("#tags").append("<p id='cloud'>"+ $("#tag").val() + "<span class='del-tag'> X</span>" + "</p>");
@@ -13,8 +14,7 @@ $(document).ready(function(){
 		// console.log(tagArray);
 	});
 
-
-	// autocomplete for tags
+	// autocomplete for search bar
 	$('#search').on('keyup', function() {
 		// alert("in input field")
 		$.ajax({
@@ -23,7 +23,6 @@ $(document).ready(function(){
 		  dataType:"json",
 		  // gets the tags from the database
 		  success:function(result){
-		  	// alert("Resolut")
 		  	// autocomplete
 		  	$( "#search" ).autocomplete({  
 	     	source: result
@@ -34,14 +33,12 @@ $(document).ready(function(){
 
 	// autocomplete for tags
 	$('#tag-input').on('keyup', function() {
-		// alert("in input field")
 		$.ajax({
 		  type:"GET",
 		  url:"new",
 		  dataType:"json",
 		  // gets the tags from the database
 		  success:function(result){
-		  	// alert("Resolut")
 		  	// autocomplete
 		  	$( "#tag-input" ).autocomplete({  
 	     	source: result

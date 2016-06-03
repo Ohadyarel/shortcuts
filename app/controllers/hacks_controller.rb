@@ -18,7 +18,7 @@ class HacksController < ApplicationController
 		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
 		@hackvote = @popular.last(10)
 
-		# for autocomplete
+		# creates an array to be used for search autocomplete
 		@tags=Tag.all
 		@arrTags=[]
 		@tags.each do |cat|
@@ -42,6 +42,7 @@ class HacksController < ApplicationController
 		@hack=Hack.new
 		@tag=Tag.new
 
+		# PUT IN HELPER METHOD LATER
 		# search lifehacks with a certain tag
 		if params[:search]
 			@searched_tag = Tag.where(category:params[:search]).first
@@ -54,7 +55,7 @@ class HacksController < ApplicationController
 			@hacks=Hack.all
 		end
 
-		# for autocomplete
+		# creates an array to be used for search autocomplete
 		@search_tags=Tag.all
 		@newArr=[]
 		@search_tags.each do |cat|
@@ -66,6 +67,7 @@ class HacksController < ApplicationController
 	    format.json {render json: @newArr}
 	  end
 	  # end autocomplete
+	  # END PUT IN HELPER METHOD LATER
 	end
 
 	# creating a new lifehack by the user
