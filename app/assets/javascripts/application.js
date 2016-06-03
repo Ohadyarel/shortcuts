@@ -26,7 +26,8 @@ $(document).on('keyup keypress', 'form input[type="text"]', function(e) {
 });
 
 // autocomplete for search bar
-$(document).on('keyup', '#search', function(e) {
+$(document).on('keyup', '#search', function() {
+	// alert("hi")
 	$.ajax({
 	  type:"GET",
 	  url:"hacks",
@@ -40,3 +41,20 @@ $(document).on('keyup', '#search', function(e) {
 	  }
 	})
 });
+
+// autocomplete for tags
+$(document).on('keyup', '#search', function() {
+	// alert("in input field")
+	$.ajax({
+	  type:"GET",
+	  dataType:"json",
+	  // gets the tags from the database
+	  success:function(result){
+	  	// autocomplete
+	  	$( "#search" ).autocomplete({  
+     	source: result
+	    });
+	  }
+	})
+});
+

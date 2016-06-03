@@ -12,5 +12,28 @@ $(document).ready(function(){
 		$("#tag-array").val(tagArray)
 		// console.log(tagArray);
 	});
-	
+
+
+
+	// autocomplete for tags
+	$('#tag-input').on('keyup', function() {
+		// alert("in input field")
+		$.ajax({
+		  type:"GET",
+		  url:"new",
+		  dataType:"json",
+		  // gets the tags from the database
+		  success:function(result){
+		  	// alert("Resolut")
+		  	// autocomplete
+		  	$( "#tag-input" ).autocomplete({  
+	     	source: result
+		    });
+		  }
+		})
+});
+
+
+
 })
+

@@ -41,6 +41,31 @@ class HacksController < ApplicationController
 	def new
 		@hack=Hack.new
 		@tag=Tag.new
+
+		# search lifehacks with a certain tag
+		if params[:search]
+			@searched_tag = Tag.where(category:params[:search]).first
+			if @searched_tag
+				@hacks=@searched_tag.hacks
+			else
+				@hacks=Hack.all	
+			end
+		else
+			@hacks=Hack.all
+		end
+
+		# for autocomplete
+		@search_tags=Tag.all
+		@newArr=[]
+		@search_tags.each do |cat|
+			@newArr.push(cat.category)
+		end
+
+	  respond_to do |format|
+	    format.html
+	    format.json {render json: @newArr}
+	  end
+	  # end autocomplete
 	end
 
 	# creating a new lifehack by the user
