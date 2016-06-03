@@ -9,11 +9,12 @@
 
 		<!-- capture the tag -->
 		<div class="input-group">
-		  <input type="text" id="tag-input" placeholder="Tags">
+		  <input type="text" id="tag" placeholder="Tags">
 		  <span class="input-group-addon" type="submit" id="submit-tag"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></span>
 		</div>
 		<%= f.hidden_field :tags, id:"tag-array"%>
 		<br>
+		<!-- if the tag exists in the database, then add it below the tag field -->
 		<div id="tags">
 			<%if @tags%>
 				<%@tags.each do |tag|%>
@@ -21,6 +22,7 @@
 				<%end%>
 			<%end%>
 		</div>
+		<!-- end printing tags -->
 		<%=f.submit id: "create-hack" %>
 	<% end %>
 </div>

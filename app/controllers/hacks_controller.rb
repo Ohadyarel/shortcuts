@@ -14,10 +14,6 @@ class HacksController < ApplicationController
 			@hacks=Hack.page(params[:page]).per(10)
 		end
 		
-		#variables for most popular life hacks based on upvotes
-		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
-		@hackvote = @popular.last(10)
-
 		# creates an array to be used for search autocomplete
 		@tags=Tag.all
 		@arrTags=[]
@@ -30,6 +26,10 @@ class HacksController < ApplicationController
 	    format.json {render json: @arrTags}
 	  end
 	  # end autocomplete
+
+		#variables for most popular life hacks based on upvotes
+		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
+		@hackvote = @popular.last(10)
 	end
 
 	# find the hack for hack page
@@ -41,8 +41,9 @@ class HacksController < ApplicationController
 	def new
 		@hack=Hack.new
 		@tag=Tag.new
+		@tags=[]
 
-		# PUT IN HELPER METHOD LATER
+		########### PUT IN HELPER METHOD LATER
 		# search lifehacks with a certain tag
 		if params[:search]
 			@searched_tag = Tag.where(category:params[:search]).first
@@ -67,7 +68,7 @@ class HacksController < ApplicationController
 	    format.json {render json: @newArr}
 	  end
 	  # end autocomplete
-	  # END PUT IN HELPER METHOD LATER
+	  ############ END PUT IN HELPER METHOD LATER
 	end
 
 	# creating a new lifehack by the user
@@ -82,9 +83,6 @@ class HacksController < ApplicationController
 
 		# captures the tags and converts to an array
 		@allTags = params[:hack][:tags]
-		puts "hajfdkajndfkvjankfdjnvakjdfnvkajdnfvkjandfkjvnakdfjnvakjdfnvkajdnfv"
-		puts @allTags
-		puts "hajfdkajndfkvjankfdjnvakjdfnvkajdnfvkjandfkjvnakdfjnvakjdfnvkajdnfv"
 		if !@allTags.blank?
 			@arrTags = @allTags.split(",").map(&:strip)
 			# loop through each tag
