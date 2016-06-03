@@ -106,8 +106,14 @@ nav {
 	padding: 8px 5px;
 }
 
-nav	.logo {
+.logo {
 	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.logo img {
+	width: 23px;
 }
 
 #plus_icon {
@@ -154,6 +160,7 @@ nav #search-form {
 nav #search-form input {
 	width:80%;
 	padding-left: 5px;
+	margin-top: 0;
 	height:35px;
 	border: 2px solid lightgray;
 	border-radius: 4px;
@@ -164,7 +171,7 @@ nav #search-form input:focus {
 }
 
 nav #search-form button {
-	height: 35px;
+	height: 35.5px;
 	width: 35px;
 	background: black;
 	border: 2px solid white;
