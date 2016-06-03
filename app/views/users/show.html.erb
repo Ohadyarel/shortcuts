@@ -77,67 +77,71 @@
 
 		<!-- tab with all of the hacks the current_user favorited -->
 		<div role="tabpanel" class="tab-pane fade" id="favorites">
-			<% @fav_hacks.each do |fav| %>
-				<div class="hack">
-					<div class="hack_title">
-						<!-- display the hack's title -->
-						<h3><%=fav.hack.title%></h3>
-					</div>
-
-					<!-- hack's image -->
-					<!-- if the image is set to the missing.png, then get the http link to img -->
-					<%if fav.hack.lhimg.url == "/images/original/missing.png"%>
-						<div class="hack_img">
-							<img src="<%=fav.hack.lhimgurl%>">
+			<%if @fav_hacks.length>0%>
+				<% @fav_hacks.each do |fav| %>
+					<div class="hack">
+						<div class="hack_title">
+							<!-- display the hack's title -->
+							<h3><%=fav.hack.title%></h3>
 						</div>
-					<%else%>
-						<div class="hack_img">
-							<%= image_tag fav.hack.lhimg.url(:medium) %>
-						</div>
-					<%end%>
 
-					<div class="hack_img_footer">
-						<!-- unfavorite button -->
-						<div class="fave_buttons_<%= fav.hack.id %>">
-							<%= link_to favorite_path(fav.id), method: :delete, remote: true, class: "unfave_button" do %>
-								<span class="glyphicon glyphicon-star yellow_h"></span>
+						<!-- hack's image -->
+						<!-- if the image is set to the missing.png, then get the http link to img -->
+						<%if fav.hack.lhimg.url == "/images/original/missing.png"%>
+							<div class="hack_img">
+								<img src="<%=fav.hack.lhimgurl%>">
+							</div>
+						<%else%>
+							<div class="hack_img">
+								<%= image_tag fav.hack.lhimg.url(:medium) %>
+							</div>
+						<%end%>
+
+						<div class="hack_img_footer">
+							<!-- unfavorite button -->
+							<div class="fave_buttons_<%= fav.hack.id %>">
+								<%= link_to favorite_path(fav.id), method: :delete, remote: true, class: "unfave_button" do %>
+									<span class="glyphicon glyphicon-star yellow_h"></span>
+								<% end %>
+							</div>
+
+							<!-- up/down vote buttons -->
+							<%= link_to like_hack_path(fav.hack), method: :put, remote: true do %>
+								<span class="glyphicon glyphicon-triangle-top green_h"></span>
 							<% end %>
+							<%= link_to dislike_hack_path(fav.hack), method: :put, remote: true do %>
+								<span class="glyphicon glyphicon-triangle-bottom red_h"></span>
+							<% end %>
+
+							<!-- display the username of the creator of the hack -->
+							<p><%= fav.hack.user.username %></p>
 						</div>
 
-						<!-- up/down vote buttons -->
-						<%= link_to like_hack_path(fav.hack), method: :put, remote: true do %>
-							<span class="glyphicon glyphicon-triangle-top green_h"></span>
-						<% end %>
-						<%= link_to dislike_hack_path(fav.hack), method: :put, remote: true do %>
-							<span class="glyphicon glyphicon-triangle-bottom red_h"></span>
-						<% end %>
 
-						<!-- display the username of the creator of the hack -->
-						<p><%= fav.hack.user.username %></p>
-					</div>
+						<!-- up/down vote counters -->
+						<div class="hack_vote_counters">
+							<span id="upvote_count_<%= fav.hack.id %> green"><%= fav.hack.get_upvotes.size %></span>
+							<span>/</span>
+							<span id="downvote_count_<%= fav.hack.id %> red"><%= fav.hack.get_downvotes.size %></span>
+						</div>
+					
+						<!-- the text body of the hack -->
+						<div class="hack_body">
+							<p><%=fav.hack.body%></p>
+						</div>
 
-
-					<!-- up/down vote counters -->
-					<div class="hack_vote_counters">
-						<span id="upvote_count_<%= fav.hack.id %> green"><%= fav.hack.get_upvotes.size %></span>
-						<span>/</span>
-						<span id="downvote_count_<%= fav.hack.id %> red"><%= fav.hack.get_downvotes.size %></span>
+						<!-- displaying all the hack's tags -->
+						<div class="hack_tags">
+							<% fav.hack.tags.each do |tag| %>
+								<div class="tag_cloud">
+						    	<%= link_to tag.category, tag_path(tag.id)%>
+						    </div>
+					    <% end %>
+						</div>
 					</div>
-				
-					<!-- the text body of the hack -->
-					<div class="hack_body">
-						<p><%=fav.hack.body%></p>
-					</div>
-
-					<!-- displaying all the hack's tags -->
-					<div class="hack_tags">
-						<% fav.hack.tags.each do |tag| %>
-							<div class="tag_cloud">
-					    	<%= link_to tag.category, tag_path(tag.id)%>
-					    </div>
-				    <% end %>
-					</div>
-				</div>
+				<%end%>
+			<%else%>
+				<h3 id="fav-header">You currently do not have any favorites.</h3>
 			<%end%>
 		</div>
 	</div>
