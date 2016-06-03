@@ -15,49 +15,13 @@
  *= require jquery-ui
  *= require font-awesome
  */
- body{
- 	margin: 0 auto;
+
+ body {
+ 	margin: 0;
  }
 
-nav{
-	background-color:lightblue;
-	height: 50px;
-	padding: 5px 5px;
-}
-nav	.logo{
-	float: left;
-}
-nav a{
-	color:black;
-	display: inline;
-	float: right;
-}
-nav .glyphicon-plus{
-	float: right;
-}
-nav a{
-	float: left;
-	padding:5px;
-}
-/*nav .dropdown-menu{
-	float:right;
-}*/
-nav .dropdown{
-	float: right;
-}
+/*=================== forms ===================*/
 
-nav #search-form{
-	width:50%;
-	float: left;
-}
-nav #search-form input[type=text]{
-	width:80%;
-	padding-left: 5px;
-	height:35px;
-	border: 2px solid lightgray;
-	border-radius: 4px;
-}
-/*forms*/
 #form-bg{
 	background-image: url("potential-bg3.png");
 	background-size: 100% 100%;
@@ -131,8 +95,109 @@ nav #search-form input[type=text]{
 	border: 2px solid lightgray;
 }
 
+/*==========================================*/
 
-/*================ hack style ================*/
+
+/*================ nav bar ================*/
+
+nav {
+	background-color:black;
+	height: 50px;
+	padding: 8px 5px;
+}
+
+nav	.logo {
+	float: left;
+}
+
+#plus_icon {
+	height: 37px;
+	width: 40px;
+	border-radius: 4px;
+	color: black;
+	display: inline;
+	float: right;
+}
+
+#plus_icon .glyphicon-plus {
+	width: 100%;
+	margin: 7px auto;
+	text-align: center;
+	float: right;
+	color: white;
+	font-size: 1.4em;
+}
+
+.dropdown {
+	float: right;
+}
+
+#dropdownMenu1 {
+	background: black;
+	color: white;
+	border: none;
+}
+
+#dropdownMenu1:focus {
+	outline: none;
+}
+
+#dropdownMenu1 span {
+	font-size: 1.6em;
+}
+
+nav #search-form {
+	width:50%;
+	float: left;
+}
+
+nav #search-form input {
+	width:80%;
+	padding-left: 5px;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+}
+
+nav #search-form input:focus {
+	outline-color: grey;
+}
+
+nav #search-form button {
+	height: 35px;
+	width: 35px;
+	background: black;
+	border: 2px solid white;
+	border-radius: 4px;
+	color: white;
+	font-size: 1.3em;
+}
+
+/*when there is no user in session*/
+
+#login_list li {
+	text-align: center;
+	margin: 5px 0;
+}
+
+#login_list input {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#login_pass {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	float: none;
+}
+
+/*=============================================*/
+
+
+
+/*================= hack style ================*/
 
 .hack {
 	width: 85%;
