@@ -15,11 +15,19 @@
 					<% end %>
 				</div>
 			</div>
-
-			<!-- hack's image -->
-			<div class="hack_img">
-				<%= image_tag hack.lhimg.url(:medium) %>
-			</div>
+			
+			<!-- image of life hack -->
+			<!-- if the image is set to the missing.png, then get the http link to img -->
+			<%if hack.lhimg.url == "/images/original/missing.png"%>
+				<div class="hack_img">
+					<img src="<%=hack.lhimgurl%>">
+				</div>
+			<%else%>
+				<div class="hack_img">
+					<%= image_tag hack.lhimg.url(:medium) %>
+				</div>
+			<%end%>
+			<!-- end of image of life hack -->
 
 			<div class="hack_img_footer">
 				<% if logged_in? %>
