@@ -13,4 +13,396 @@
  *= require_tree .
  *= require_self
  *= require jquery-ui
+ *= require font-awesome
  */
+
+ body {
+ 	margin: 0;
+ }
+
+/*=================== forms ===================*/
+
+#form-bg{
+	background-image: url("potential-bg3.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index:-1;
+}
+
+.forms-box{
+	/*background:gray;*/
+	width:400px;
+	/*height: 300px;*/
+	margin: 10% auto;
+}
+/*.forms-box form{
+	display: inline-block;
+	text-align: center;
+	margin: auto 25%;
+}*/
+/*text box*/
+.forms-box input[type=text],input[type=password]{
+	text-align: center;
+	width:400px;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+}
+.forms-box input[type=text]:focus, input[type=password]:focus {
+	border-color:black;
+	outline: 5px;
+	outline-color: black;
+}
+/*submit button*/
+.forms-box input[type=submit] {
+	width:100px;
+	background-color:black;
+	border-color:black;
+	border-radius: 4px;
+	color: white;
+	margin: auto 40%;
+}
+.forms-box input[type=submit]:hover {
+	background-color:lightgray;
+	border-color:lightgray;
+	color: black;
+}
+.forms-box input[type=file] {
+	border:none;
+	margin-bottom: 0px;
+	/*text-align: center;*/
+	/*color: transparent;*/
+}
+.button_to input[type=submit]{
+	width:100px;
+	margin-top: 10px;
+	background-color:red;
+	border-color:red;
+	color: white;
+}
+.button_to input[type=submit]:hover{
+	margin-top: 10px;
+	background-color:black;
+	border-color:black;
+	color: red;
+}
+.input-group-addon{
+	/*background-color: red;*/
+	border:black solid 2px;
+	border: 2px solid lightgray;
+}
+
+/*==========================================*/
+
+
+/*================ nav bar ================*/
+
+nav {
+	background-color:black;
+	height: 50px;
+	padding: 8px 5px;
+}
+
+nav	.logo {
+	float: left;
+}
+
+#plus_icon {
+	height: 37px;
+	width: 40px;
+	border-radius: 4px;
+	color: black;
+	display: inline;
+	float: right;
+}
+
+#plus_icon .glyphicon-plus {
+	width: 100%;
+	margin: 7px auto;
+	text-align: center;
+	float: right;
+	color: white;
+	font-size: 1.4em;
+}
+
+.dropdown {
+	float: right;
+}
+
+#dropdownMenu1 {
+	background: black;
+	color: white;
+	border: none;
+}
+
+#dropdownMenu1:focus {
+	outline: none;
+}
+
+#dropdownMenu1 span {
+	font-size: 1.6em;
+}
+
+nav #search-form {
+	width:50%;
+	float: left;
+}
+
+nav #search-form input {
+	width:80%;
+	padding-left: 5px;
+	height:35px;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+}
+
+nav #search-form input:focus {
+	outline-color: grey;
+}
+
+nav #search-form button {
+	height: 35px;
+	width: 35px;
+	background: black;
+	border: 2px solid white;
+	border-radius: 4px;
+	color: white;
+	font-size: 1.3em;
+}
+
+/*when there is no user in session*/
+
+#login_list li {
+	text-align: center;
+	margin: 5px 0;
+}
+
+#login_list input {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#login_pass {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	float: none;
+}
+
+/*=============================================*/
+
+
+
+/*================= hack style ================*/
+
+.hack {
+	width: 85%;
+	margin: 0 auto;
+	margin-bottom: 60px;
+}
+
+.hack_title {
+	border: 1px solid black;
+}
+
+.hack_title h3 {
+	float: left;
+	margin: 6px;
+	margin-left: 3px;
+}
+
+.hack_edit_button {
+	float: right;
+	margin: 6px;
+}
+
+.hack_edit_button a {
+	text-decoration: none;
+	color:black;
+}
+
+.hack_edit_button span {
+	font-size: 1.5em;
+}
+
+.hack_img {
+	clear: both;
+	border: 1px solid black;
+}
+
+.hack_img img {
+	width: 100%;
+}
+
+.hack_img_footer {
+	border-bottom: 1px solid black;
+	padding: 5px;
+	padding-left: 1px;
+}
+
+.hack_img_footer div {
+	display: inline-block;
+}
+
+.hack_img_footer a {
+	display: inline-block;
+	color: black;
+}
+
+.hack_img_footer span {
+	font-size: 1.5em;
+}
+
+.hack_img_footer .yellow_h:hover {
+	color:#FFCC00;
+}
+
+.hack_img_footer .red_h:hover {
+	color: red;
+}
+
+.hack_img_footer .green_h:hover {
+	color: green;
+}
+
+.hack_img_footer p {
+	font-style: italic;
+	font-weight: bold;
+	float: right;
+	margin-top: 2px;
+	margin-bottom: 0;
+	color: grey;
+}
+
+.hack_vote_counters {
+	margin-left: 4px;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.hack_vote_counters .red {
+	color: red;
+}
+
+.hack_vote_counters .green {
+	color: green;
+}
+
+.hack_body {
+	margin-left: 2px;
+}
+
+.tag_cloud a {
+	color: white;
+	text-decoration: none;
+}
+
+.tag_cloud {
+	display: inline-block;
+	background:black;
+	border-radius:8px;
+	padding: 2px 8px;
+	margin-bottom: 2px;
+}
+
+.tag_cloud:hover {
+	background:grey;
+}
+
+/*=============================================*/
+
+/*================ index#hacks ================*/
+
+#index_tabs {
+	width: 100%;
+	margin: 20px auto;
+	border: none;
+	text-align: center;
+}
+
+#index_tabs li {
+	float: none;
+	display: inline-block;
+}
+
+#index_tabs .active  a{
+	background: black;
+	color: white;
+	border-radius:4px;
+}
+
+#index_tabs a {
+	background: white;
+	color: black;
+	font-size: 1.2em;
+	font-weight: bold;
+	border-radius:4px;
+}
+
+/*=============================================*/
+
+/*================= show#user =================*/
+
+#profile_tabs {
+	width: 100%;
+	margin: 20px auto;
+	border: none;
+	text-align: center;
+}
+
+#profile_tabs li {
+	float: none;
+	display: inline-block;
+}
+
+#profile_tabs .active  a{
+	background: black;
+	color: white;
+	border-radius:4px;
+}
+
+#profile_tabs a {
+	background: white;
+	color: black;
+	font-size: 1.2em;
+	font-weight: bold;
+	border-radius:4px;
+}
+
+/*=============================================*/
+
+/*================== show#tag =================*/
+
+#tag h2 {
+	width: 85%;
+	margin: 30px auto;
+}
+
+#tag h2 span {
+	color: white;
+}
+
+/*=============================================*/
+
+/*================ break point ================*/
+
+@media (min-width: 768px) {
+	.view {
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+
+@media (min-width: 1200px) {
+	.view {
+		width: 65%;
+		margin: 0 auto;
+	}
+}
+
+/*=============================================*/
+

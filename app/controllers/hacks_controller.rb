@@ -18,7 +18,7 @@ class HacksController < ApplicationController
 		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
 		@hackvote = @popular.last(10)
 
-		# for autocomplete
+		# creates an array to be used for search autocomplete
 		@tags=Tag.all
 		@arrTags=[]
 		@tags.each do |cat|
@@ -41,6 +41,33 @@ class HacksController < ApplicationController
 	def new
 		@hack=Hack.new
 		@tag=Tag.new
+
+		# PUT IN HELPER METHOD LATER
+		# search lifehacks with a certain tag
+		if params[:search]
+			@searched_tag = Tag.where(category:params[:search]).first
+			if @searched_tag
+				@hacks=@searched_tag.hacks
+			else
+				@hacks=Hack.all	
+			end
+		else
+			@hacks=Hack.all
+		end
+
+		# creates an array to be used for search autocomplete
+		@search_tags=Tag.all
+		@newArr=[]
+		@search_tags.each do |cat|
+			@newArr.push(cat.category)
+		end
+
+	  respond_to do |format|
+	    format.html
+	    format.json {render json: @newArr}
+	  end
+	  # end autocomplete
+	  # END PUT IN HELPER METHOD LATER
 	end
 
 	# creating a new lifehack by the user
@@ -55,16 +82,20 @@ class HacksController < ApplicationController
 
 		# captures the tags and converts to an array
 		@allTags = params[:hack][:tags]
-		@arrTags = @allTags.split(",").map(&:strip)
-
-		# loop through each tag
-		@arrTags.each do |tag|
-			# if the tag exists, create the hack tag
-			if @tag=Tag.where(category:tag).first
-				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
-			else
-				@tag=Tag.create(category: tag)
-				HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+		puts "hajfdkajndfkvjankfdjnvakjdfnvkajdnfvkjandfkjvnakdfjnvakjdfnvkajdnfv"
+		puts @allTags
+		puts "hajfdkajndfkvjankfdjnvakjdfnvkajdnfvkjandfkjvnakdfjnvakjdfnvkajdnfv"
+		if !@allTags.blank?
+			@arrTags = @allTags.split(",").map(&:strip)
+			# loop through each tag
+			@arrTags.each do |tag|
+				# if the tag exists, create the hack tag
+				if @tag=Tag.where(category:tag).first
+					HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+				else
+					@tag=Tag.create(category: tag)
+					HackTag.create(tag_id:@tag.id, hack_id:@hack.id)
+				end
 			end
 		end
 
@@ -102,6 +133,8 @@ class HacksController < ApplicationController
 	# destroy a lifehack :(
 	def destroy
 		@hack = Hack.find(params[:id])
+		@hack.hack_tags.destroy_all
+		@hack.favorites.destroy_all
 		@hack.destroy
 		redirect_to hacks_path
 	end
