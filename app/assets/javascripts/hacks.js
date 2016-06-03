@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	// array of tags 
 	var tagArray=[]
+	$("#tag-array").val(tagArray)
 	$("#submit-tag").on('click',function(e) {
     tagArray.push($("#tag").val());
     $("#tags").append("<p id='cloud'>"+ $("#tag").val() + "<span class='del-tag'> X</span>" + "</p>");
@@ -9,8 +10,9 @@ $(document).ready(function(){
 			$(this).parent().remove();
 		});
 		// replace the tag-array with the values of the array
-		$("#tag-array").val(tagArray)
-		// console.log(tagArray);
+		if (tagArray.length != 0) {
+			$("#tag-array").val(tagArray)
+		}
 	});
 	
 })

@@ -2,13 +2,12 @@
 <div id="form-bg"></div>
 <div class="forms-box">
 	<%= form_for @hack do |f| %>
-		<%=f.text_field :title, placeholder: "Title" %><br><br>
+		<%=f.text_field :title, placeholder: "Title", :maxlength => 150 %><br><br>
 		<%= f.file_field :lhimg %><br>
-		<%=f.text_field :body, placeholder: "Body" %><br><br>
+		<%=f.text_field :body, placeholder: "Body", :maxlength => 150 %><br><br>
 		<%= f.hidden_field :user_id, value:current_user.id%>
 
 		<!-- capture the tag -->
-		<!-- <input type="text" id="tag" placeholder="Tags"> -->
 		<div class="input-group">
 		  <input type="text" id="tag" placeholder="Tags">
 		  <span class="input-group-addon" type="submit" id="submit-tag"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></span>
