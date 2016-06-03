@@ -13,6 +13,10 @@ class HacksController < ApplicationController
 		else
 			@hacks=Hack.all
 		end
+
+		#variables for most popular life hacks based on upvotes
+		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
+		@hackvote = @popular.last(10)
 		
 		# creates an array to be used for search autocomplete
 		@tags=Tag.all
@@ -26,10 +30,6 @@ class HacksController < ApplicationController
 	    format.json {render json: @arrTags}
 	  end
 	  # end autocomplete
-
-		#variables for most popular life hacks based on upvotes
-		@popular = @hacks.sort_by{ |hack| hack.get_upvotes.size }
-		@hackvote = @popular.last(10)
 	end
 
 	# find the hack for hack page
