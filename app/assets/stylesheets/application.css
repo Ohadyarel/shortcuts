@@ -106,8 +106,14 @@ nav {
 	padding: 8px 5px;
 }
 
-nav	.logo {
+.logo {
 	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.logo img {
+	width: 23px;
 }
 
 #plus_icon {
@@ -154,6 +160,7 @@ nav #search-form {
 nav #search-form input {
 	width:80%;
 	padding-left: 5px;
+	margin-top: 0;
 	height:35px;
 	border: 2px solid lightgray;
 	border-radius: 4px;
@@ -164,7 +171,7 @@ nav #search-form input:focus {
 }
 
 nav #search-form button {
-	height: 35px;
+	height: 35.5px;
 	width: 35px;
 	background: black;
 	border: 2px solid white;
@@ -180,10 +187,19 @@ nav #search-form button {
 	margin: 5px 0;
 }
 
-#login_list input {
+#login_username {
 	width: 80%;
+	height:35px;
 	margin: 0 auto;
 	text-align: center;
+	border: 2px solid lightgray;
+	border-radius: 4px;
+}
+
+#login_username:focus {
+	border-color:black;
+	outline: 5px;
+	outline-color: black;
 }
 
 #login_pass {
@@ -191,6 +207,33 @@ nav #search-form button {
 	margin: 0 auto;
 	text-align: center;
 	float: none;
+}
+
+#login_button {
+	width: 80%;
+	border: 1px solid black;
+	border-radius: 4px;
+	background: black;
+	color: white;
+}
+
+#login_button:hover {
+	background: white;
+	color: black;
+}
+
+#signup_button {
+	width: 80%;
+	height: 100%;
+	border: 1px solid black;
+	border-radius: 4px;
+	background: black;
+	color: white;
+}
+
+#signup_button:hover {
+	background: white;
+	color: black;
 }
 
 /*=============================================*/
@@ -341,6 +384,33 @@ nav #search-form button {
 	font-size: 1.2em;
 	font-weight: bold;
 	border-radius:4px;
+}
+
+/*pagination styling*/
+
+.page_nav {
+	text-align: right;
+}
+
+.page_nav ul li a {
+	color: black;
+	background: white;
+}
+
+.page_nav ul li a:hover {
+
+}
+
+.page_nav .active a {
+	background: black;
+	color: white;
+	border-color: black;
+}
+
+.page_nav .active a:hover {
+	background: grey;
+	/*color: black;*/
+	border-color: grey;
 }
 
 /*=============================================*/
