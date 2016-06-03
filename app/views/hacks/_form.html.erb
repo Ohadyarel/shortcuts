@@ -18,7 +18,7 @@
 		<div id="tags">
 			<%if @tags%>
 				<%@tags.each do |tag|%>
-					<p id="cloud"><%=tag.category%><%=link_to "X", hack_tag_path(tag.id, hack_id:@hack.id), method: :delete%></p>
+					<p class="tag_cloud"><%=tag.category%><%=link_to "X", hack_tag_path(tag.id, hack_id:@hack.id), method: :delete%></p>
 				<%end%>
 			<%end%>
 		</div>

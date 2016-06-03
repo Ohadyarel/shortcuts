@@ -132,15 +132,14 @@
 	padding-left: 2px;
 }
 
-#submit-tag span {
-	/*padding-right: 10px;*/
-}
-
 #tag {
 	display: inline-block;
 	width: 95%;
 }
 
+#tags {
+	color: white;
+}
 /*==========================================*/
 
 
