@@ -5,8 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# User.create(username: "Finn101", password: "hocuscrocus", email: "email@email1.com")
-# User.create(username: "Cuco", password: "kingofplotbunnies", email: "email@email2.com")
+User.create(username: "BoredPanda", password: "panda1234", email: "email@email1.com")
+User.create(username: "ohadyarel", password: "123456", email: "email@email2.com", admin: true)
 # User.create(username: "IlikeTurtles", password: "somethingrandom", email: "email@email3.com")
 
 # Hack.create(user_id: 1, title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph)

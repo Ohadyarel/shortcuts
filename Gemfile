@@ -8,6 +8,9 @@ gem 'tzinfo-data'
 gem "paperclip", "~> 4.2"
 gem "faker"
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'nokogiri'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
