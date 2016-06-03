@@ -14,6 +14,23 @@ $(document).ready(function(){
 	});
 
 
+	// autocomplete for tags
+	$('#search').on('keyup', function() {
+		// alert("in input field")
+		$.ajax({
+		  type:"GET",
+		  url:"new",
+		  dataType:"json",
+		  // gets the tags from the database
+		  success:function(result){
+		  	// alert("Resolut")
+		  	// autocomplete
+		  	$( "#search" ).autocomplete({  
+	     	source: result
+		    });
+		  }
+		})
+	});
 
 	// autocomplete for tags
 	$('#tag-input').on('keyup', function() {
@@ -31,9 +48,7 @@ $(document).ready(function(){
 		    });
 		  }
 		})
-});
-
-
+	});
 
 })
 
