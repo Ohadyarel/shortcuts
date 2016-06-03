@@ -14,5 +14,39 @@ $(document).ready(function(){
 			$("#tag-array").val(tagArray)
 		}
 	});
-	
+
+	// autocomplete for search bar
+	$('#search').on('keyup', function() {
+		// alert("in input field")
+		$.ajax({
+		  type:"GET",
+		  url:"new",
+		  dataType:"json",
+		  // gets the tags from the database
+		  success:function(result){
+		  	// autocomplete
+		  	$( "#search" ).autocomplete({  
+	     	source: result
+		    });
+		  }
+		})
+	});
+
+	// autocomplete for tags
+	$('#tag-input').on('keyup', function() {
+		$.ajax({
+		  type:"GET",
+		  url:"new",
+		  dataType:"json",
+		  // gets the tags from the database
+		  success:function(result){
+		  	// autocomplete
+		  	$( "#tag-input" ).autocomplete({  
+	     	source: result
+		    });
+		  }
+		})
+	});
+
 })
+
